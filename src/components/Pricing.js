@@ -200,7 +200,7 @@ export default function Pricing() {
         </div>
 
         <div className="reveal text-center mt-10 text-sm text-gray-500 font-light">
-          ✦ Todos los planes incluyen 5 días de prueba gratuita · Sin permanencia mínima
+          ✦ Todos los planes incluyen 7 días de prueba gratuita · Sin permanencia mínima
         </div>
       </div>
     </section>

@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { MessageSquare, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import Image from "next/image";
 
 export default function Navbar() {
   const [scrolled,    setScrolled]    = useState(false);
@@ -35,9 +36,13 @@ export default function Navbar() {
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           {/* Logo */}
           <button onClick={() => scrollTo("#hero")} className="flex items-center gap-2.5 group">
-            <div className="w-8 h-8 rounded-xl bg-brand-500 flex items-center justify-center shadow-lg shadow-brand-500/30 group-hover:shadow-brand-500/50 transition-shadow">
-              <MessageSquare className="w-4 h-4 text-white" />
-            </div>
+            <Image
+              src="/favicon.png"
+              alt="FaChat"
+              width={32}
+              height={32}
+              className="rounded-xl"
+            />
             <span className="text-white font-semibold text-lg tracking-tight">FaChat</span>
           </button>
 

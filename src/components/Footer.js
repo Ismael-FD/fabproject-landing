@@ -1,4 +1,4 @@
-import { MessageSquare } from "lucide-react";
+import Image from "next/image";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -17,9 +17,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="md:col-span-2 space-y-4">
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-xl bg-brand-500 flex items-center justify-center shadow-lg shadow-brand-500/30">
-                <MessageSquare className="w-4 h-4 text-white" />
-              </div>
+              <Image src="/favicon.png" alt="FaChat" width={32} height={32} className="rounded-xl" />
               <span className="text-white font-semibold text-lg tracking-tight">FaChat</span>
             </div>
             <p className="text-gray-500 text-sm leading-relaxed font-light max-w-xs">
