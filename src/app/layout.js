@@ -1,7 +1,7 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "FaChat — Automatizá la atención de tu negocio por WhatsApp",
+  title: "FaChat :)",
   description:
     "Asistente virtual con IA para WhatsApp. Tomá pedidos, respondé consultas y gestioná tu catálogo las 24 horas. Para barberías, restaurantes, tiendas y más.",
   keywords: [
