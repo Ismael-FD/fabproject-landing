@@ -1,0 +1,243 @@
+PROMPT PARA REDISEÑO LANDING — SISTEMA MANGA EDITORIAL
+🔒 REGLAS OBLIGATORIAS — LEER ANTES DE TOCAR CUALQUIER COSA
+NO modificar bajo ningún concepto:
+
+Lógica de negocio, funciones, handlers o callbacks existentes
+Llamadas a APIs, endpoints, fetch/axios/queries
+Variables de entorno o configuración de build
+Rutas del router y estructura de navegación
+Dependencias del proyecto (no instalar ni desinstalar nada)
+Estructura de archivos y carpetas existente
+Nombres de componentes, props o exports
+Solo está permitido modificar:
+
+Clases CSS / estilos / Tailwind classes
+Colores, tipografía, espaciados, bordes, sombras
+Textos de UI (labels, headings, copy), si se pide explícitamente
+Orden visual de elementos dentro de un mismo componente
+Si un elemento existente tiene un evento onClick, onChange, onSubmit, etc., conservarlo exactamente igual, solo cambiarle la apariencia.
+
+🎨 SISTEMA DE DISEÑO — MANGA EDITORIAL MINIMALISTA
+Este diseño se inspira en el editorial japonés manga: blanco y negro con un fondo crema/hueso, bordes duros de 2px negro, tipografía ultra-bold, sin gradientes, sin colores azules, sin pills redondeados. Es gráfico, limpio y de alto contraste.
+
+Paleta de colores
+Token	Valor	Uso
+bg-primary	#F3EEE5	Fondo principal de toda la página
+bg-secondary	#ECE4D7	Secciones alternadas, fondos de chips, headers de cards
+text-primary	#111111	Texto principal, bordes, íconos
+text-muted	#666666	Texto secundario, subtítulos, placeholders
+bg-card	#FFFFFF	Fondo de cards, modales, inputs
+Tipografía
+Fuente: Inter (Google Fonts) — pesos 400, 600, 900
+Títulos grandes: font-black (900), tracking-tighter, uppercase, tamaño 64px–96px
+Títulos de sección: font-black, uppercase, tracking-tight, 48px–72px
+Labels / subtítulos: font-black, uppercase, tracking-widest, 10px–13px
+Cuerpo: font-medium, leading-relaxed
+Botones: font-black, uppercase, tracking-tight
+Bordes y sombras
+/* Borde estándar */
+border: 2px solid #111111;
+/* Borde grueso (hero/cards principales) */
+border: 4px solid #111111;
+/* Sombra manga — desplazada, sin blur */
+box-shadow: 8px 8px 0px 0px #111111;
+box-shadow: 16px 16px 0px 0px #111111;
+/* Sombra para card Pro invertida */
+box-shadow: 16px 16px 0px 0px #F3EEE5, 16px 16px 0px 4px #111111;
+
+Botones
+Primario:
+  bg: #111111 | text: #F3EEE5 | border: 2px solid #111111
+  hover: bg transparent | text #111111
+  padding: px-8 py-4 | font-black uppercase tracking-tight
+Secundario (outline):
+  bg: transparent | text: #111111 | border: 2px solid #111111
+  hover: bg #111111 | text #F3EEE5
+
+Reglas absolutas de estilo
+❌ Cero gradientes (gradient está prohibido)
+❌ Cero azules (no blue-*, no indigo-*, no sky-*)
+❌ Cero pills/rounded pill (rounded-full está prohibido)
+❌ Cero sombras con blur (shadow-lg, shadow-md con blur → reemplazar siempre por sombra desplazada sin blur)
+✅ Bordes duros, sombras rígidas offset
+✅ rounded-none como default; máximo rounded-sm o rounded en inputs si ya existían
+📐 ESTRUCTURA DE LA LANDING PAGE — SECCIÓN POR SECCIÓN
+Aplicar exactamente este layout y diseño sobre la estructura existente del landing page. Adaptar los textos al copy real de tu producto.
+
+SECCIÓN 1: NAVBAR
+Layout: sticky top-0, z-50, bg #F3EEE5, border-bottom 2px solid #111111
+Altura: h-20
+Contenido (flex, justify-between, items-center):
+IZQUIERDA — Logo:
+  • Caja cuadrada 40×40px, bg #111111, text #F3EEE5, font-black, text-xl, border-2 border-[#111111]
+  • Texto "FC" (o iniciales del producto)
+  • Al lado: texto "FaChat" en font-black text-2xl tracking-tighter
+CENTRO — Links (hidden en mobile, visible en md):
+  • color #666666, font-semibold
+  • hover: color #111111
+  • Links: "Características", "Cómo funciona", "Precios"
+DERECHA — CTAs:
+  • Link "Iniciar sesión" — hidden en mobile, font-bold
+  • Botón "Comenzar" — bg #111111, text #F3EEE5, border-2, px-6 py-2.5, font-bold, uppercase, tracking-tight
+    hover: bg transparent, text #111111
+
+SECCIÓN 2: HERO
+Layout: max-w-7xl mx-auto px-6, pt-24 pb-32
+Grid: lg:grid-cols-[60%_40%] gap-16 items-center
+COLUMNA IZQUIERDA:
+  1. Chip badge:
+     • border 1px solid #111111, px-3 py-1, text-xs font-bold uppercase tracking-widest
+     • bg #ECE4D7
+     • Texto: "IA para cualquier negocio"
+  2. Heading principal (h1):
+     • font-black, tracking-tighter, uppercase
+     • Tamaño: text-[64px] md:text-[96px]
+     • line-height: leading-[0.9]
+     • Tres líneas separadas con <span class="block">:
+         "Tu negocio,"
+         "atendido"
+         "solo."
+  3. Párrafo descriptivo:
+     • text-xl, text-[#666666], font-medium, leading-relaxed, max-w-lg
+     • Texto: "Un asistente de WhatsApp con IA que toma turnos, pedidos y consultas
+       por vos — para restaurantes, peluquerías, tiendas, lavaderos y más."
+  4. Chips de tipos de negocio (flex flex-wrap gap-3):
+     • Cada chip: border-2 border-[#111111], px-3 py-1.5, bg-white, text-sm font-bold
+     • Ícono de lucide-react + label
+     • Chips: [Utensils] Restaurantes · [Scissors] Peluquerías · [ShoppingBag] Tiendas · [Car] Lavaderos
+  5. CTA row (flex gap-4):
+     • Botón primario grande: bg #111111, text #F3EEE5, border-2, px-8 py-4
+       font-black, text-lg, uppercase, tracking-tight
+       → Ícono ArrowRight con hover:translate-x-1
+       Texto: "Empezar gratis"
+     • Texto: "* Sin tarjeta de crédito" — text-sm, font-semibold, #666666, uppercase
+COLUMNA DERECHA — Manga panel / chat mockup:
+  • Contenedor: border-4 border-[#111111], bg-white, p-6, aspect-[3/4]
+    shadow: 16px 16px 0px 0px #111111
+    position: relative
+  • Header de la caja (posición absolute top-0 left-0):
+    w-full, h-8, border-bottom-4 border-[#111111], bg #ECE4D7
+    → dentro: div w-20 h-2 bg-[#111111] (simula botones de ventana)
+  • Contenido: conversación de WhatsApp con bubbles manga
+    → Cada bubble: border-2 border-[#111111], p-3, text-sm
+    → Bubble usuario: bg #F3EEE5, self-end, con "cola" bottom-right
+      (pseudo-elemento: div 16×16px, bg #F3EEE5, border-r-2 border-b-2 border-[#111111], rotate-45, absolute -bottom-2 -right-2)
+    → Bubble bot: bg white, self-start, con "cola" bottom-left
+      (pseudo-elemento: div 16×16px, bg white, border-l-2 border-b-2 border-[#111111], -rotate-45, absolute -bottom-2 -left-2)
+    Conversación de ejemplo (adaptar al negocio):
+      [label] "✂ Peluquería Don Mario"
+      [usuario] "Hola! Quiero sacar turno para mañana ✂️"
+      [bot] "¡Hola! Tenemos turnos a las 10:00, 12:30 y 16:00. ¿Cuál preferís?"
+      [usuario] "A las 10, para corte y barba"
+      [bot] Confirmación con:
+        header: "Turno confirmado ✓" (uppercase, font-bold, border-bottom-2, text-xs)
+        body: fecha, hora, servicio — text-xs
+        cierre: "Te esperamos!" font-black
+  • Elemento decorativo:
+    Caja pequeña absolute -right-8 -top-8, border-4, bg #F3EEE5, p-2, rotate-12
+    → Texto "!" font-black text-2xl
+
+SECCIÓN 3: FEATURES
+Layout: border-top-4 border-[#111111], bg #ECE4D7, py-24
+Contenido max-w-7xl mx-auto px-6
+Heading:
+  • text-5xl md:text-7xl, font-black, tracking-tighter, uppercase, mb-16
+  • border-left-8 border-[#111111], pl-6
+  • Texto: "Todo lo que\nnecesitás"
+Grid: md:grid-cols-2 lg:grid-cols-3 gap-8
+Cada card de feature:
+  • bg-white, border-4 border-[#111111], p-8
+  • shadow: 8px 8px 0px 0px #111111
+  • hover: -translate-y-2 (transition-transform duration-300)
+  • Ícono: caja 64×64px, border-2 border-[#111111], bg #F3EEE5, flex center, mb-6
+    Ícono de lucide-react w-8 h-8
+  • Título: font-black, text-2xl, uppercase, tracking-tight, mb-4
+  • Descripción: text-[#666666], font-medium, leading-relaxed
+Features a incluir (adaptar descripciones al producto):
+  1. [Bot] "Asistente IA 24/7"
+     "Respondé consultas, tomá turnos y gestioná pedidos automáticamente por WhatsApp, sin intervención humana."
+  2. [LayoutDashboard] "Panel de Control"
+     "Todo tu negocio en una sola pantalla: clientes, turnos, pedidos y métricas en tiempo real."
+  3. [Calendar] "Turnos y reservas"
+     "El bot agenda, confirma y recuerda turnos a tus clientes de forma automática."
+  4. [CreditCard] "Cobros integrados"
+     "Recibí pagos por MercadoPago o transferencia con confirmación automática al cliente."
+  5. [BarChart] "Análisis del negocio"
+     "Métricas de atención, servicios más solicitados y clientes recurrentes."
+  6. [ShieldCheck] "Sin spam"
+     "Filtros inteligentes para mensajes irrelevantes — solo atendés lo que importa."
+
+SECCIÓN 4: HOW IT WORKS
+Layout: py-32, max-w-7xl mx-auto px-6
+Header centrado:
+  • text-5xl md:text-7xl, font-black, tracking-tighter, uppercase
+  • Texto: "3 Pasos Simples"
+  • Subtítulo: text-xl, text-[#666666], font-medium, mt-6
+Grid: lg:grid-cols-3 gap-12
+Cada paso:
+  • border-4 border-[#111111], bg-white, p-8, position relative
+  • hover group: bg #111111, text #F3EEE5 (transition-colors)
+  
+  Número decorativo (absolute -top-12 -left-6):
+  • text-8xl, font-black, text-[#ECE4D7]
+  • hover: text-[#333333]
+  • pointer-events-none, z-0
+  
+  Contenido (relative z-10):
+  • Título: font-black, text-2xl, uppercase, tracking-tight, mb-4, mt-8
+  • Descripción: text-[#666666] (hover: text-[#999999]), font-medium, leading-relaxed
+Pasos:
+  "01" → "Conectá tu WhatsApp"
+  "02" → "Configurá tu negocio"
+  "03" → "Atendé sin estar"
+
+SECCIÓN 5: PRICING
+Layout: border-top-4 border-[#111111], bg #ECE4D7, py-32
+Grid max-w-4xl mx-auto: lg:grid-cols-2 gap-12
+CARD BÁSICO:
+  • border-4 border-[#111111], bg-white, p-8
+  • Label: uppercase, font-black, tracking-widest, text-sm, text-[#666666], mb-4
+    Texto: "Básico"
+  • Precio: text-6xl, font-black, tracking-tighter, mb-8
+    "$25K" + span text-2xl text-[#666666] "/mes"
+  • Lista de features: space-y-4, font-medium
+    Cada item: flex items-center gap-3
+    Ícono Check: w-5 h-5, border-2 border-[#111111], p-0.5
+  • Botón: w-full, border-2 border-[#111111], py-4, font-black, uppercase, tracking-tight
+    bg white → hover: bg #111111, text #F3EEE5
+CARD PRO (dark):
+  • border-4 border-[#111111], bg #111111, text #F3EEE5, p-8, position relative
+  • Shadow: 16px 16px 0px 0px #F3EEE5, 16px 16px 0px 4px #111111
+  • Badge "Más Popular" (absolute top-0 right-0):
+    bg #F3EEE5, text #111111, font-black, uppercase, text-xs, px-4 py-2
+    border-bottom-4 border-left-4 border-[#111111]
+  • Label: text-[#999999]
+  • Precio: misma estructura
+  • Lista: Check con border-[#F3EEE5]
+  • Botón: bg #F3EEE5, text #111111, border-[#F3EEE5]
+    hover: bg transparent, text #F3EEE5
+
+SECCIÓN 6: FOOTER
+Layout: border-top-4 border-[#111111], bg #F3EEE5, py-12
+Flex: justify-between items-center, gap-6, flex-col en mobile md:flex-row
+IZQUIERDA — Logo reducido:
+  • Caja 32×32px, bg #111111, text #F3EEE5, font-black, text-sm, border-2
+  • Texto "FaChat" font-black text-xl tracking-tighter
+DERECHA — Copyright:
+  • text-[#666666], font-medium, font-bold, text-sm, uppercase, tracking-widest
+  • "© 2024 FaChat. Todos los derechos reservados."
+
+✅ CHECKLIST FINAL DE VALIDACIÓN
+Antes de considerar el trabajo terminado, verificar:
+
+ Fondo de toda la página es #F3EEE5 (no blanco puro, no gris)
+ No existe ni un solo uso de azul, índigo, violeta o verde en botones/iconos/estados
+ Todos los bordes visibles son solid #111111 (no grises, no transparentes)
+ Ningún botón tiene rounded-full o apariencia de pill
+ Las sombras no tienen blur — todas son offset rígido Xpx Ypx 0px #111111
+ El navbar es sticky con border-bottom negro
+ La fuente Inter está cargada con peso 900 disponible
+ Las cards de features levantan con -translate-y-2 en hover
+ Los pasos de "cómo funciona" invierten a negro/bone en hover
+ La card Pro tiene shadow doble (bone + negro)
+ Toda la funcionalidad existente sigue intacta (links, forms, handlers)
