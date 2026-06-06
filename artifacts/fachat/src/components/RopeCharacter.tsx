@@ -1,44 +1,101 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function RopeCharacter() {
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [velocity, setVelocity] = useState(0);   // normalised -1..1
+  const [phase, setPhase] = useState(0);           // walking cycle
   const [showBubble, setShowBubble] = useState(false);
 
-  useEffect(() => {
-    let bubbleTimer: ReturnType<typeof setTimeout>;
+  const lastScrollY = useRef(window.scrollY);
+  const lastTime    = useRef(Date.now());
+  const velRef      = useRef(0);
+  const phaseRef    = useRef(0);
+  const rafRef      = useRef<number>(0);
+  const stopTimer   = useRef<ReturnType<typeof setTimeout>>();
+  const bubbleTimer = useRef<ReturnType<typeof setTimeout>>();
 
-    const handleScroll = () => {
+  // ── animation loop ──────────────────────────────────────────────
+  useEffect(() => {
+    const loop = () => {
+      // decay velocity smoothly
+      velRef.current *= 0.88;
+      if (Math.abs(velRef.current) > 0.01) {
+        setVelocity(velRef.current);
+        phaseRef.current += Math.abs(velRef.current) * 0.4;
+        setPhase(phaseRef.current);
+      } else {
+        setVelocity(0);
+      }
+      rafRef.current = requestAnimationFrame(loop);
+    };
+    rafRef.current = requestAnimationFrame(loop);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, []);
+
+  // ── scroll tracker ───────────────────────────────────────────────
+  useEffect(() => {
+    const onScroll = () => {
+      const now   = Date.now();
+      const dt    = Math.max(now - lastTime.current, 1);
+      const dy    = window.scrollY - lastScrollY.current;
+      const raw   = dy / dt;           // px/ms
+      velRef.current = Math.max(-1, Math.min(1, raw * 8));
+
       const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = maxScroll > 0 ? window.scrollY / maxScroll : 0;
+      const progress  = maxScroll > 0 ? window.scrollY / maxScroll : 0;
       setScrollProgress(progress);
 
-      clearTimeout(bubbleTimer);
+      lastScrollY.current = window.scrollY;
+      lastTime.current    = now;
+
+      // bubble logic
+      clearTimeout(bubbleTimer.current);
       setShowBubble(false);
-      bubbleTimer = setTimeout(() => {
+      bubbleTimer.current = setTimeout(() => {
         if (progress < 0.04 || progress > 0.93) setShowBubble(true);
-      }, 600);
+      }, 700);
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    // show bubble on initial load after a delay
-    const initTimer = setTimeout(() => setShowBubble(true), 1200);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    // show initial bubble
+    const t = setTimeout(() => setShowBubble(true), 1400);
     return () => {
-      window.removeEventListener("scroll", handleScroll);
-      clearTimeout(bubbleTimer);
-      clearTimeout(initTimer);
+      window.removeEventListener("scroll", onScroll);
+      clearTimeout(t);
+      clearTimeout(bubbleTimer.current);
     };
   }, []);
 
-  const atTop = scrollProgress < 0.04;
+  // ── derived values ───────────────────────────────────────────────
+  const atTop    = scrollProgress < 0.04;
   const atBottom = scrollProgress > 0.93;
 
-  // character Y position: travels from 8vh to 88vh
+  // character Y on rope: 8vh → 88vh
   const charY = 8 + scrollProgress * 80;
 
-  // eye Y offset: up (-3), center (0), down (+3)
-  const eyeOffset = atBottom ? -3 : atTop ? 3 : 0;
+  // on dark (footer) background → invert colours
+  const onDark     = scrollProgress > 0.90;
+  const stroke     = onDark ? "#F3EEE5" : "#111111";
+  const fill       = onDark ? "#111111" : "#F3EEE5";
+  const ropeColor  = onDark ? "#888888" : "#111111";
+  const ropeAlt    = onDark ? "#aaaaaa" : "#444444";
+
+  // tilt: rotate around grip (28, 8). down=positive, up=negative
+  const tilt = velocity * 22;
+
+  // leg swing: sin-wave while moving
+  const swing = velocity !== 0 ? Math.sin(phase) * 10 : 0;
+
+  // eye offset
+  const eyeOff = atBottom ? -3.5 : atTop ? 3.5 : 0;
+
+  // grip hand pulse while moving
+  const moving = Math.abs(velocity) > 0.05;
 
   const bubbleText = atBottom ? "¿Subimos?" : "¿Qué hay abajo?";
+  const bubbleBg   = onDark ? "#111111" : "#F3EEE5";
+  const bubbleBdr  = onDark ? "#F3EEE5" : "#111111";
+  const bubbleTxt  = onDark ? "#F3EEE5" : "#111111";
 
   return (
     <div
@@ -47,7 +104,7 @@ export default function RopeCharacter() {
         left: 0,
         top: 0,
         height: "100vh",
-        width: "72px",
+        width: "80px",
         zIndex: 200,
         pointerEvents: "none",
         userSelect: "none",
@@ -57,12 +114,13 @@ export default function RopeCharacter() {
       <div
         style={{
           position: "absolute",
-          left: "28px",
+          left: "30px",
           top: "5vh",
           bottom: "5vh",
           width: "3px",
-          background: "repeating-linear-gradient(180deg, #111111 0px, #111111 6px, #444444 6px, #444444 10px)",
+          background: `repeating-linear-gradient(180deg, ${ropeColor} 0px, ${ropeColor} 6px, ${ropeAlt} 6px, ${ropeAlt} 10px)`,
           borderRadius: "2px",
+          transition: "background 0.4s ease",
         }}
       />
 
@@ -72,49 +130,70 @@ export default function RopeCharacter() {
           position: "absolute",
           left: "0",
           top: `${charY}vh`,
-          width: "72px",
+          width: "80px",
           transform: "translateY(-50%)",
-          transition: "top 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+          transition: "top 0.08s linear",
           display: "flex",
           alignItems: "center",
         }}
       >
-        {/* SVG person */}
-        <svg width="56" height="72" viewBox="0 0 56 72" fill="none" xmlns="http://www.w3.org/2000/svg">
-          {/* Rope grip hands */}
-          <circle cx="28" cy="8" r="4" fill="#F3EEE5" stroke="#111111" strokeWidth="2.5" />
+        <svg
+          width="60"
+          height="80"
+          viewBox="0 0 60 80"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          style={{ overflow: "visible" }}
+        >
+          {/* Everything rotates around the grip point (30, 6) */}
+          <g transform={`rotate(${tilt}, 30, 6)`} style={{ transition: "transform 0.05s ease-out" }}>
 
-          {/* Arms up holding rope */}
-          <line x1="28" y1="28" x2="18" y2="14" stroke="#111111" strokeWidth="2.5" strokeLinecap="round" />
-          <line x1="28" y1="28" x2="38" y2="14" stroke="#111111" strokeWidth="2.5" strokeLinecap="round" />
+            {/* Grip hands */}
+            <circle cx="24" cy="8"  r="4" fill={fill} stroke={stroke} strokeWidth="2.5" />
+            <circle cx="36" cy="8"  r="4" fill={fill} stroke={stroke} strokeWidth="2.5" />
 
-          {/* Body */}
-          <line x1="28" y1="36" x2="28" y2="54" stroke="#111111" strokeWidth="2.5" strokeLinecap="round" />
+            {/* Arms up holding rope */}
+            <line x1="30" y1="30" x2="24" y2="12" stroke={stroke} strokeWidth="2.5" strokeLinecap="round" />
+            <line x1="30" y1="30" x2="36" y2="12" stroke={stroke} strokeWidth="2.5" strokeLinecap="round" />
 
-          {/* Legs */}
-          <line x1="28" y1="54" x2="20" y2="68" stroke="#111111" strokeWidth="2.5" strokeLinecap="round" />
-          <line x1="28" y1="54" x2="36" y2="68" stroke="#111111" strokeWidth="2.5" strokeLinecap="round" />
+            {/* Body */}
+            <line x1="30" y1="38" x2="30" y2="56" stroke={stroke} strokeWidth="2.5" strokeLinecap="round" />
 
-          {/* Head */}
-          <circle cx="28" cy="28" r="12" fill="#F3EEE5" stroke="#111111" strokeWidth="2.5" />
-
-          {/* Eyes — animated offset */}
-          <circle cx="23" cy={28 + eyeOffset} r="2.5" fill="#111111">
-            <animate
-              attributeName="cy"
-              values={`${28 + eyeOffset}`}
-              dur="0.3s"
-              fill="freeze"
+            {/* Legs — swing with walking phase */}
+            <line
+              x1="30" y1="56"
+              x2={22 - swing * 0.5} y2={70 + swing * 0.4}
+              stroke={stroke} strokeWidth="2.5" strokeLinecap="round"
             />
-          </circle>
-          <circle cx="33" cy={28 + eyeOffset} r="2.5" fill="#111111" />
+            <line
+              x1="30" y1="56"
+              x2={38 + swing * 0.5} y2={70 - swing * 0.4}
+              stroke={stroke} strokeWidth="2.5" strokeLinecap="round"
+            />
 
-          {/* Mouth — smile at top, neutral in middle, slight frown at bottom asking to go up */}
-          {atBottom ? (
-            <path d="M23 34 Q28 31 33 34" stroke="#111111" strokeWidth="1.5" strokeLinecap="round" fill="none" />
-          ) : (
-            <path d="M23 33 Q28 37 33 33" stroke="#111111" strokeWidth="1.5" strokeLinecap="round" fill="none" />
-          )}
+            {/* Head */}
+            <circle cx="30" cy="22" r="13" fill={fill} stroke={stroke} strokeWidth="2.5" />
+
+            {/* Eyes */}
+            <circle cx="25" cy={22 + eyeOff} r="2.5" fill={stroke} />
+            <circle cx="35" cy={22 + eyeOff} r="2.5" fill={stroke} />
+
+            {/* Mouth */}
+            {atBottom ? (
+              <path d="M25 28 Q30 25 35 28" stroke={stroke} strokeWidth="1.8" strokeLinecap="round" fill="none" />
+            ) : (
+              <path d="M25 27 Q30 32 35 27" stroke={stroke} strokeWidth="1.8" strokeLinecap="round" fill="none" />
+            )}
+
+            {/* Motion lines when moving fast */}
+            {moving && (
+              <>
+                <line x1="8"  y1="20" x2="2"  y2="20" stroke={stroke} strokeWidth="1.5" strokeLinecap="round" opacity="0.4" />
+                <line x1="8"  y1="28" x2="1"  y2="28" stroke={stroke} strokeWidth="1"   strokeLinecap="round" opacity="0.25" />
+                <line x1="8"  y1="36" x2="3"  y2="36" stroke={stroke} strokeWidth="1.5" strokeLinecap="round" opacity="0.3" />
+              </>
+            )}
+          </g>
         </svg>
 
         {/* Speech bubble */}
@@ -122,45 +201,41 @@ export default function RopeCharacter() {
           <div
             style={{
               position: "absolute",
-              left: "58px",
+              left: "64px",
               top: "50%",
               transform: "translateY(-50%)",
-              backgroundColor: "#F3EEE5",
-              border: "2.5px solid #111111",
-              padding: "0.35rem 0.65rem",
-              fontSize: "0.6rem",
+              backgroundColor: bubbleBg,
+              border: `2.5px solid ${bubbleBdr}`,
+              padding: "0.4rem 0.7rem",
+              fontSize: "0.58rem",
               fontFamily: "'Inter', sans-serif",
               fontWeight: 900,
-              color: "#111111",
+              color: bubbleTxt,
               whiteSpace: "nowrap",
               textTransform: "uppercase",
-              letterSpacing: "0.04em",
-              boxShadow: "3px 3px 0px 0px #111111",
+              letterSpacing: "0.05em",
+              boxShadow: `3px 3px 0px 0px ${bubbleBdr}`,
               animation: "bubblePop 0.25s ease-out",
             }}
           >
             {/* Tail */}
             <div style={{
               position: "absolute",
-              left: "-7px",
-              top: "50%",
+              left: "-8px", top: "50%",
               transform: "translateY(-50%)",
-              width: 0,
-              height: 0,
+              width: 0, height: 0,
               borderTop: "5px solid transparent",
               borderBottom: "5px solid transparent",
-              borderRight: "7px solid #111111",
+              borderRight: `8px solid ${bubbleBdr}`,
             }} />
             <div style={{
               position: "absolute",
-              left: "-4px",
-              top: "50%",
+              left: "-4px", top: "50%",
               transform: "translateY(-50%)",
-              width: 0,
-              height: 0,
+              width: 0, height: 0,
               borderTop: "4px solid transparent",
               borderBottom: "4px solid transparent",
-              borderRight: "6px solid #F3EEE5",
+              borderRight: `6px solid ${bubbleBg}`,
             }} />
             {bubbleText}
           </div>
@@ -169,8 +244,8 @@ export default function RopeCharacter() {
 
       <style>{`
         @keyframes bubblePop {
-          0%   { opacity: 0; transform: translateY(-50%) scale(0.7); }
-          60%  { transform: translateY(-50%) scale(1.05); }
+          0%   { opacity: 0; transform: translateY(-50%) scale(0.6); }
+          65%  { transform: translateY(-50%) scale(1.06); }
           100% { opacity: 1; transform: translateY(-50%) scale(1); }
         }
       `}</style>
