@@ -180,7 +180,8 @@ export default function Pricing() {
           })}
         </div>
 
-        <div className="reveal mt-8 text-sm text-[#666666] font-medium">
+        <div className="reveal text-sm text-[#666666] font-medium border-t-2 border-[#111111]"
+          style={{ marginTop: "2.5rem", paddingTop: "1.25rem" }}>
           ✦ Todos los planes incluyen 7 días de prueba gratuita · Sin permanencia mínima
         </div>
 
