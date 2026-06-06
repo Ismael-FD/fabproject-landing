@@ -1,15 +1,14 @@
 import { useState, useEffect } from "react";
+import { useLocation } from "wouter";
 import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [location] = useLocation();
+  const isHome = location === "/";
 
   useEffect(() => {
-    if (mobileOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [mobileOpen]);
 
@@ -20,25 +19,38 @@ export default function Navbar() {
     { num: "04", label: "FAQ",             href: "#faq"      },
   ];
 
-  const scrollTo = (href: string) => {
+  const navigate = (href: string) => {
     setMobileOpen(false);
-    setTimeout(() => {
-      document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
-    }, 300);
+    if (isHome) {
+      setTimeout(() => {
+        document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+      }, 300);
+    } else {
+      window.location.href = "/" + href;
+    }
+  };
+
+  const goHome = () => {
+    setMobileOpen(false);
+    if (isHome) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      window.location.href = "/";
+    }
   };
 
   return (
     <>
       <nav className="sticky top-0 left-0 right-0 z-50 bg-[#F3EEE5] border-b-4 border-[#111111]">
         <div className="section-inner nav-inner flex items-center justify-between h-20">
-          <button onClick={() => scrollTo("#hero")}>
+          <button onClick={goHome}>
             <span className="font-black text-2xl tracking-tighter text-[#111111]">FaChat</span>
           </button>
 
           {/* Desktop nav */}
           <div className="hidden md:flex items-center gap-8">
             {links.map((l) => (
-              <button key={l.href} onClick={() => scrollTo(l.href)}
+              <button key={l.href} onClick={() => navigate(l.href)}
                 className="text-sm text-[#666666] font-semibold hover:text-[#111111] transition-colors">
                 {l.label}
               </button>
@@ -50,7 +62,7 @@ export default function Navbar() {
               className="text-sm font-bold text-[#111111] hover:text-[#666666] transition-colors">
               Ingresar al panel
             </a>
-            <button onClick={() => scrollTo("#pricing")}
+            <button onClick={() => navigate("#pricing")}
               className="text-sm font-black uppercase tracking-tight bg-[#111111] text-[#F3EEE5] border-2 border-[#111111] px-6 py-2.5 hover:bg-transparent hover:text-[#111111] transition-colors">
               Comenzar
             </button>
@@ -84,13 +96,12 @@ export default function Navbar() {
           className="flex items-center justify-between flex-shrink-0"
           style={{ padding: "0 1.5rem", height: "80px", borderBottom: "4px solid #111111", background: "#111111" }}
         >
-          <span className="font-black tracking-tighter text-[#F3EEE5]" style={{ fontSize: "1.4rem" }}>
-            FaChat
-          </span>
-          <button
-            onClick={() => setMobileOpen(false)}
-            style={{ color: "#F3EEE5", padding: "0.25rem" }}
-          >
+          <button onClick={goHome}>
+            <span className="font-black tracking-tighter text-[#F3EEE5]" style={{ fontSize: "1.4rem" }}>
+              FaChat
+            </span>
+          </button>
+          <button onClick={() => setMobileOpen(false)} style={{ color: "#F3EEE5", padding: "0.25rem" }}>
             <X className="w-5 h-5" />
           </button>
         </div>
@@ -100,25 +111,35 @@ export default function Navbar() {
           {links.map((l) => (
             <button
               key={l.href}
-              onClick={() => scrollTo(l.href)}
+              onClick={() => navigate(l.href)}
               className="group w-full text-left"
               style={{ display: "flex", alignItems: "center", gap: "1.25rem", padding: "1.25rem 1.5rem", borderBottom: "2px solid #ECE4D7" }}
             >
-              <span
-                className="font-black tabular-nums flex-shrink-0"
-                style={{ fontSize: "0.7rem", color: "#BBBBBB", letterSpacing: "0.05em" }}
-              >
+              <span className="font-black tabular-nums flex-shrink-0" style={{ fontSize: "0.7rem", color: "#BBBBBB", letterSpacing: "0.05em" }}>
                 {l.num}
               </span>
-              <span
-                className="font-black uppercase tracking-tight text-[#111111] flex-1 group-hover:translate-x-0.5 transition-transform duration-150"
-                style={{ fontSize: "1.15rem" }}
-              >
+              <span className="font-black uppercase tracking-tight text-[#111111] flex-1 group-hover:translate-x-0.5 transition-transform duration-150" style={{ fontSize: "1.15rem" }}>
                 {l.label}
               </span>
               <span style={{ color: "#BBBBBB", fontSize: "1rem" }}>→</span>
             </button>
           ))}
+
+          {/* Inicio — sólo visible desde páginas secundarias */}
+          {!isHome && (
+            <button
+              onClick={goHome}
+              className="group w-full text-left"
+              style={{ display: "flex", alignItems: "center", gap: "1.25rem", padding: "1.25rem 1.5rem", borderBottom: "2px solid #ECE4D7" }}
+            >
+              <span className="font-black tabular-nums flex-shrink-0" style={{ fontSize: "0.7rem", color: "#BBBBBB", letterSpacing: "0.05em" }}>
+                ←
+              </span>
+              <span className="font-black uppercase tracking-tight text-[#111111] flex-1 group-hover:translate-x-0.5 transition-transform duration-150" style={{ fontSize: "1.15rem" }}>
+                Inicio
+              </span>
+            </button>
+          )}
         </nav>
 
         {/* CTAs */}
@@ -137,7 +158,7 @@ export default function Navbar() {
             Ingresar al panel
           </a>
           <button
-            onClick={() => scrollTo("#pricing")}
+            onClick={() => navigate("#pricing")}
             className="w-full font-black uppercase tracking-tight text-[#F3EEE5] hover:opacity-90 transition-opacity"
             style={{ background: "#111111", padding: "1rem", fontSize: "0.9rem", boxShadow: "4px 4px 0px 0px rgba(0,0,0,0.25)" }}
           >
