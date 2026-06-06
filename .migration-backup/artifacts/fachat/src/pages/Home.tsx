@@ -5,10 +5,12 @@ import HowItWorks from "@/components/HowItWorks";
 import Pricing from "@/components/Pricing";
 import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
+import RopeCharacter from "@/components/RopeCharacter";
 
 export default function Home() {
   return (
-    <main className="bg-[#060a07] min-h-screen">
+    <main className="bg-[#F3EEE5] min-h-screen">
+      <RopeCharacter />
       <Navbar />
       <Hero />
       <Features />

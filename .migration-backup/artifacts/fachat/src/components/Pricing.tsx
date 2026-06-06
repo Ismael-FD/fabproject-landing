@@ -100,7 +100,7 @@ export default function Pricing() {
 
   return (
     <section id="pricing" ref={ref} className="bg-[#ECE4D7] border-t-4 border-[#111111]">
-      <div className="section-inner px-8 py-20">
+      <div className="section-inner">
 
         <div className="reveal mb-12">
           <h2 className="font-black text-[clamp(40px,4vw,64px)] uppercase tracking-tighter text-[#111111]">
@@ -119,12 +119,12 @@ export default function Pricing() {
 
             return (
               <div key={plan.key}
-                className={`reveal ${delays[i]} relative flex flex-col border-4 border-[#111111] p-8 ${
+                className={`reveal ${delays[i]} relative flex flex-col border-4 border-[#111111] ${
                   isHighlight ? "bg-[#111111] text-[#F3EEE5]" : "bg-white text-[#111111]"
                 }`}
                 style={isHighlight
-                  ? { boxShadow: "12px 12px 0px 0px #F3EEE5, 12px 12px 0px 3px #111111" }
-                  : { boxShadow: "6px 6px 0px 0px #111111" }
+                  ? { boxShadow: "12px 12px 0px 0px #F3EEE5, 12px 12px 0px 3px #111111", padding: "2rem" }
+                  : { boxShadow: "6px 6px 0px 0px #111111", padding: "2rem" }
                 }
               >
                 {meta.badge && (
@@ -166,7 +166,8 @@ export default function Pricing() {
 
                 <button
                   onClick={() => handleCTA(meta.name)}
-                  className={`w-full py-3.5 font-black uppercase tracking-tight text-sm border-2 transition-colors ${
+                  style={{ padding: "1rem" }}
+                  className={`w-full font-black uppercase tracking-tight text-sm border-2 transition-colors ${
                     isHighlight
                       ? "bg-[#F3EEE5] text-[#111111] border-[#F3EEE5] hover:bg-transparent hover:text-[#F3EEE5]"
                       : "bg-white text-[#111111] border-[#111111] hover:bg-[#111111] hover:text-[#F3EEE5]"
@@ -179,9 +180,8 @@ export default function Pricing() {
           })}
         </div>
 
-        <div className="reveal mt-8 text-sm text-[#666666] font-medium">
-          ✦ Todos los planes incluyen 7 días de prueba gratuita · Sin permanencia mínima
-        </div>
+        <div className="reveal text-sm text-[#666666] font-medium border-t-2 border-[#111111]"
+          style={{ marginTop: "2.5rem", paddingTop: "1.25rem" }}>✦ Se incluyen 5 días de prueba gratuita · Sin permanencia mínima</div>
 
       </div>
     </section>

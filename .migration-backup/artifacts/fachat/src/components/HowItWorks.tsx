@@ -39,7 +39,7 @@ export default function HowItWorks() {
 
   return (
     <section id="how" ref={ref} className="bg-[#F3EEE5] border-t-4 border-[#111111]">
-      <div className="section-inner px-8 py-20">
+      <div className="section-inner">
 
         <div className="reveal mb-12">
           <h2 className="font-black text-[clamp(40px,4vw,64px)] uppercase tracking-tighter text-[#111111]">
@@ -55,9 +55,10 @@ export default function HowItWorks() {
             const delays = ["delay-100", "delay-200", "delay-300"];
             return (
               <div key={i}
-                className={`reveal ${delays[i]} relative border-4 border-[#111111] bg-white p-8 pt-14 group hover:bg-[#111111] transition-colors duration-200 cursor-default`}
+                className={`reveal ${delays[i]} relative border-4 border-[#111111] bg-white group hover:bg-[#111111] transition-colors duration-200 cursor-default overflow-hidden`}
+                style={{ padding: "2rem", paddingTop: "5rem" }}
               >
-                <div className="absolute -top-8 left-4 text-7xl font-black text-[#ECE4D7] pointer-events-none select-none group-hover:text-[#2a2a2a] transition-colors">
+                <div className="absolute top-0 left-2 text-8xl font-black text-[#ECE4D7] pointer-events-none select-none group-hover:text-[#2a2a2a] transition-colors leading-none">
                   {step.num}
                 </div>
                 <div className="relative z-10">
@@ -76,7 +77,8 @@ export default function HowItWorks() {
         <div className="reveal mt-12">
           <button
             onClick={() => document.querySelector("#pricing")?.scrollIntoView({ behavior: "smooth" })}
-            className="inline-flex items-center gap-2 bg-[#111111] text-[#F3EEE5] border-2 border-[#111111] px-8 py-4 font-black uppercase tracking-tight text-sm hover:bg-transparent hover:text-[#111111] transition-colors"
+            style={{ padding: "1rem 2.5rem", fontSize: "1rem" }}
+            className="inline-flex items-center gap-3 bg-[#111111] text-[#F3EEE5] border-2 border-[#111111] font-black uppercase tracking-tight hover:bg-transparent hover:text-[#111111] transition-colors"
           >
             QUIERO EMPEZAR
           </button>

@@ -19,15 +19,15 @@ export default function Hero() {
 
   return (
     <section id="hero" ref={ref} className="bg-[#F3EEE5] overflow-hidden">
-      <div className="section-inner px-8 pt-20 pb-24">
+      <div className="section-inner hero-inner">
         <div className="grid lg:grid-cols-2 gap-12 xl:gap-20 items-center">
 
           {/* LEFT — copy */}
           <div>
             <div
               data-reveal
-              style={{ opacity: 0, transform: "translateY(20px)", transition: "all 0.5s ease" }}
-              className="inline-block border border-[#111111] bg-[#ECE4D7] px-3 py-1 text-xs font-black uppercase tracking-widest mb-6"
+              style={{ opacity: 0, transform: "translateY(20px)", transition: "all 0.5s ease", padding: "0.5rem 1.25rem", marginBottom: "1.5rem" }}
+              className="inline-block border-2 border-[#111111] bg-[#ECE4D7] text-xs font-black uppercase tracking-widest"
             >
               IA PARA CUALQUIER NEGOCIO
             </div>
@@ -60,7 +60,8 @@ export default function Hero() {
                 { icon: Car, label: "Lavaderos" },
               ].map(({ icon: Icon, label }) => (
                 <div key={label}
-                  className="border-2 border-[#111111] bg-white px-3 py-1.5 text-xs font-black flex items-center gap-2 text-[#111111]">
+                  className="border-2 border-[#111111] bg-white text-xs font-black flex items-center gap-2 text-[#111111]"
+                  style={{ padding: "0.5rem 1rem" }}>
                   <Icon className="w-3.5 h-3.5" />
                   {label}
                 </div>
@@ -69,15 +70,16 @@ export default function Hero() {
 
             <div
               data-reveal
-              style={{ opacity: 0, transform: "translateY(20px)", transition: "all 0.5s ease" }}
+              style={{ opacity: 0, transform: "translateY(20px)", transition: "all 0.5s ease", marginTop: "0.75rem" }}
               className="flex items-center gap-6 flex-wrap"
             >
               <button
                 onClick={() => scrollTo("#pricing")}
-                className="group flex items-center gap-2 bg-[#111111] text-[#F3EEE5] border-2 border-[#111111] px-8 py-4 font-black uppercase tracking-tight text-sm hover:bg-transparent hover:text-[#111111] transition-colors"
+                style={{ padding: "1rem 2.5rem", fontSize: "1rem" }}
+                className="group flex items-center gap-3 bg-[#111111] text-[#F3EEE5] border-2 border-[#111111] font-black uppercase tracking-tight hover:bg-transparent hover:text-[#111111] transition-colors"
               >
                 EMPEZAR GRATIS
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
               <span className="text-xs font-semibold text-[#666666] uppercase tracking-wide">
                 Sin tarjeta de crédito
@@ -89,12 +91,12 @@ export default function Hero() {
           <div
             data-reveal
             style={{ opacity: 0, transform: "translateY(20px)", transition: "all 0.6s ease" }}
-            className="relative hidden lg:block"
+            className="relative pr-4 pb-4"
           >
             {/* Outer frame — offset shadow contained within column */}
             <div
               className="border-4 border-[#111111] bg-white relative"
-              style={{ boxShadow: "12px 12px 0px 0px #111111" }}
+              style={{ boxShadow: "8px 8px 0px 0px #111111" }}
             >
               {/* Window chrome bar */}
               <div className="h-10 bg-[#ECE4D7] border-b-4 border-[#111111] flex items-center px-4 gap-2">
@@ -106,21 +108,26 @@ export default function Hero() {
                 </span>
               </div>
 
-              <div className="p-6 flex flex-col gap-4">
-                <div className="self-end max-w-[75%] bg-[#F3EEE5] border-2 border-[#111111] p-3 text-sm text-[#111111]">
+              <div style={{ padding: "1.5rem", display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+                <div className="self-end max-w-[70%] bg-[#F3EEE5] border-2 border-[#111111] text-sm text-[#111111] break-words"
+                  style={{ padding: "0.75rem 1.25rem" }}>
                   Hola! Quiero sacar turno para mañana ✂️
                 </div>
-                <div className="self-start max-w-[75%] bg-white border-2 border-[#111111] p-3 text-sm text-[#111111]">
+                <div className="self-start max-w-[70%] bg-white border-2 border-[#111111] text-sm text-[#111111] break-words"
+                  style={{ padding: "0.75rem 1.25rem" }}>
                   ¡Hola! Tenemos turnos a las 10:00, 12:30 y 16:00. ¿Cuál preferís?
                 </div>
-                <div className="self-end max-w-[75%] bg-[#F3EEE5] border-2 border-[#111111] p-3 text-sm text-[#111111]">
+                <div className="self-end max-w-[70%] bg-[#F3EEE5] border-2 border-[#111111] text-sm text-[#111111] break-words"
+                  style={{ padding: "0.75rem 1.25rem" }}>
                   A las 10, para corte y barba
                 </div>
-                <div className="self-start max-w-[80%] border-2 border-[#111111] bg-[#ECE4D7] p-3 text-[#111111]">
-                  <div className="font-black text-xs uppercase border-b-2 border-[#111111] pb-1.5 mb-2">
+                <div className="self-start max-w-[75%] border-2 border-[#111111] bg-[#ECE4D7] text-[#111111]"
+                  style={{ padding: "0.75rem 1.25rem" }}>
+                  <div className="font-black text-xs uppercase border-b-2 border-[#111111]"
+                    style={{ paddingBottom: "0.5rem", marginBottom: "0.625rem" }}>
                     TURNO CONFIRMADO ✓
                   </div>
-                  <div className="text-xs mb-1.5">📅 Mañana · 10:00 hs · Corte + Barba</div>
+                  <div className="text-xs" style={{ marginBottom: "0.375rem" }}>📅 Mañana · 10:00 hs · Corte + Barba</div>
                   <div className="font-black text-xs">¡TE ESPERAMOS!</div>
                 </div>
               </div>
@@ -128,7 +135,7 @@ export default function Hero() {
 
             {/* Decorative badge */}
             <div
-              className="absolute -top-5 -right-4 border-4 border-[#111111] bg-[#F3EEE5] w-12 h-12 flex items-center justify-center z-10"
+              className="absolute -top-5 right-6 border-4 border-[#111111] bg-[#F3EEE5] w-12 h-12 flex items-center justify-center z-10"
               style={{ transform: "rotate(12deg)" }}
             >
               <span className="font-black text-2xl leading-none">!</span>

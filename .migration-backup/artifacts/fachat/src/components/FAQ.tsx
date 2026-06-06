@@ -7,8 +7,8 @@ const FAQS = [
     a: "No. Nosotros nos encargamos de toda la configuración inicial. Vos solo necesitás tener un número de WhatsApp Business. El panel es simple e intuitivo, cualquier persona puede usarlo.",
   },
   {
-    q: "¿Solo sirve para restaurantes?",
-    a: "Para nada. FaChat funciona para cualquier negocio que atienda clientes por WhatsApp: barberías, peluquerías, casas de comida rápida, dietéticas, ferreterías, tiendas de ropa, y mucho más. Si tu negocio recibe consultas o pedidos por WhatsApp, FaChat te sirve.",
+    q: "¿Para que tipo de negocio sirve?",
+    a: "FaChat funciona para cualquier negocio que atienda clientes por WhatsApp: barberías, peluquerías, casas de comida rápida, dietéticas, ferreterías, tiendas de ropa, y mucho más. Si tu negocio recibe consultas o pedidos por WhatsApp, FaChat te sirve.",
   },
   {
     q: "¿Cuánto tiempo tarda en estar activo?",
@@ -46,7 +46,7 @@ export default function FAQ() {
           }
         });
       },
-      { threshold: 0.05 }
+      { threshold: 0.05 },
     );
     ref.current?.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
     return () => observer.disconnect();
@@ -54,52 +54,79 @@ export default function FAQ() {
 
   return (
     <section id="faq" ref={ref} className="bg-[#F3EEE5] border-t-4 border-[#111111]">
-      <div className="section-inner px-8 py-20">
+      <div className="section-inner">
 
-        <div className="reveal mb-12">
-          <h2 className="font-black text-[clamp(40px,4vw,64px)] uppercase tracking-tighter text-[#111111]">
-            PREGUNTAS<br />FRECUENTES
-          </h2>
-        </div>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 2fr",
+            gap: "5rem",
+            alignItems: "start",
+          }}
+          className="reveal"
+        >
+          {/* LEFT — título fijo */}
+          <div style={{ position: "sticky", top: "6rem" }}>
+            <h2 className="font-black uppercase tracking-tighter text-[#111111]"
+              style={{ fontSize: "clamp(36px,3.5vw,56px)", lineHeight: 0.9, marginBottom: "1.5rem" }}>
+              PREGUNTAS<br />FRECUENTES
+            </h2>
+            <p className="text-[#666666] font-medium" style={{ fontSize: "0.95rem", lineHeight: 1.6, marginBottom: "2rem" }}>
+              Si no encontrás lo que buscás, escribinos.
+            </p>
+            <a
+              href="mailto:fabri.ab@hotmail.com"
+              className="inline-flex items-center font-black text-sm uppercase tracking-tight border-2 border-[#111111] bg-[#111111] text-[#F3EEE5] hover:bg-transparent hover:text-[#111111] transition-colors"
+              style={{ padding: "0.75rem 1.5rem" }}
+            >
+              Escribinos por email
+            </a>
+          </div>
 
-        <div className="max-w-2xl border-t-4 border-[#111111]">
-          {FAQS.map((faq, i) => (
-            <div key={i} className="border-b-4 border-[#111111]">
-              <button
-                onClick={() => setOpen(open === i ? null : i)}
-                className="w-full flex items-center justify-between gap-4 py-5 text-left"
-              >
-                <span className="font-black text-sm uppercase tracking-tight text-[#111111] leading-snug">
-                  {faq.q}
-                </span>
-                <div className={`w-7 h-7 border-2 border-[#111111] flex items-center justify-center flex-shrink-0 transition-colors ${
-                  open === i ? "bg-[#111111] text-[#F3EEE5]" : "bg-transparent text-[#111111]"
-                }`}>
-                  {open === i ? <Minus className="w-3.5 h-3.5" /> : <Plus className="w-3.5 h-3.5" />}
-                </div>
-              </button>
+          {/* RIGHT — accordion */}
+          <div className="border-t-4 border-[#111111]">
+            {FAQS.map((faq, i) => (
+              <div key={i} className="border-b-4 border-[#111111]">
+                <button
+                  onClick={() => setOpen(open === i ? null : i)}
+                  className="w-full flex items-center justify-between gap-4 text-left"
+                  style={{ padding: "1.25rem 0" }}
+                >
+                  <span className="font-black uppercase tracking-tight text-[#111111] leading-snug"
+                    style={{ fontSize: "0.9rem" }}>
+                    {faq.q}
+                  </span>
+                  <div
+                    className={`flex items-center justify-center flex-shrink-0 border-2 border-[#111111] transition-colors ${
+                      open === i ? "bg-[#111111] text-[#F3EEE5]" : "bg-transparent text-[#111111]"
+                    }`}
+                    style={{ width: "2rem", height: "2rem" }}
+                  >
+                    {open === i ? (
+                      <Minus className="w-3.5 h-3.5" />
+                    ) : (
+                      <Plus className="w-3.5 h-3.5" />
+                    )}
+                  </div>
+                </button>
 
-              <div style={{
-                display: "grid",
-                gridTemplateRows: open === i ? "1fr" : "0fr",
-                transition: "grid-template-rows 0.25s ease",
-              }}>
-                <div style={{ overflow: "hidden" }}>
-                  <p className="pb-5 text-[#666666] text-sm leading-relaxed font-medium">
-                    {faq.a}
-                  </p>
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateRows: open === i ? "1fr" : "0fr",
+                    transition: "grid-template-rows 0.25s ease",
+                  }}
+                >
+                  <div style={{ overflow: "hidden" }}>
+                    <p className="text-[#666666] font-medium leading-relaxed"
+                      style={{ fontSize: "0.9rem", paddingBottom: "1.25rem" }}>
+                      {faq.a}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
-
-        <div className="reveal mt-8 text-sm text-[#666666] font-medium">
-          ¿Tenés otra pregunta?{" "}
-          <a href="mailto:fabri.ab@hotmail.com"
-            className="text-[#111111] font-black underline underline-offset-4 hover:text-[#666666] transition-colors">
-            Escribinos por email
-          </a>
+            ))}
+          </div>
         </div>
 
       </div>

@@ -13,13 +13,17 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
 
 body {
   background-color: #F3EEE5;
   color: #111111;
   font-family: 'Inter', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 ::-webkit-scrollbar       { width: 6px; }
@@ -28,10 +32,29 @@ body {
 
 /* Reliable centered container regardless of Tailwind v4 quirks */
 .section-inner {
-  max-width: 1280px;
+  max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
   width: 100%;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: 4.5rem;
+  padding-bottom: 4.5rem;
+}
+
+.section-inner.hero-inner {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.section-inner.footer-inner {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.section-inner.nav-inner {
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 .manga-shadow {
@@ -67,3 +90,33 @@ body {
   50%       { transform: translateY(-8px); }
 }
 .animate-float { animation: float 6s ease-in-out infinite; }
+
+/* ── Responsive footer grid ─────────────────────────────────────── */
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+/* ── Mobile overrides ────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .section-inner {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+  .section-inner.hero-inner {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+  .section-inner.footer-inner {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
