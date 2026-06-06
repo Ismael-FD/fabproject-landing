@@ -14,10 +14,10 @@ export default function Navbar() {
   }, [mobileOpen]);
 
   const links = [
-    { label: "Características", href: "#features" },
-    { label: "Cómo funciona",   href: "#how"      },
-    { label: "Precios",         href: "#pricing"  },
-    { label: "FAQ",             href: "#faq"      },
+    { num: "01", label: "Características", href: "#features" },
+    { num: "02", label: "Cómo funciona",   href: "#how"      },
+    { num: "03", label: "Precios",         href: "#pricing"  },
+    { num: "04", label: "FAQ",             href: "#faq"      },
   ];
 
   const scrollTo = (href: string) => {
@@ -56,7 +56,7 @@ export default function Navbar() {
             </button>
           </div>
 
-          {/* Hamburger — simple, sin encuadre */}
+          {/* Hamburger */}
           <button
             onClick={() => setMobileOpen((p) => !p)}
             className="md:hidden text-[#111111] p-2 -mr-2"
@@ -70,55 +70,76 @@ export default function Navbar() {
       {/* Overlay */}
       <div
         className={`fixed inset-0 z-40 md:hidden transition-opacity duration-300 ${mobileOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
-        style={{ backgroundColor: "rgba(17,17,17,0.35)" }}
+        style={{ backgroundColor: "rgba(17,17,17,0.55)" }}
         onClick={() => setMobileOpen(false)}
       />
 
-      {/* Drawer lateral */}
+      {/* Drawer */}
       <div
-        className={`fixed top-0 right-0 bottom-0 z-50 md:hidden w-[80vw] max-w-xs bg-[#F3EEE5] border-l-4 border-[#111111] flex flex-col transition-transform duration-300 ease-in-out ${mobileOpen ? "translate-x-0" : "translate-x-full"}`}
+        className={`fixed top-0 right-0 bottom-0 z-50 md:hidden flex flex-col transition-transform duration-300 ease-in-out ${mobileOpen ? "translate-x-0" : "translate-x-full"}`}
+        style={{ width: "85vw", maxWidth: "340px", background: "#F3EEE5", borderLeft: "4px solid #111111" }}
       >
-        {/* Header del drawer */}
-        <div className="flex items-center justify-between px-6 border-b-4 border-[#111111] h-20 flex-shrink-0">
-          <span className="font-black text-xl tracking-tighter text-[#111111]">Menú</span>
+        {/* Header */}
+        <div
+          className="flex items-center justify-between flex-shrink-0"
+          style={{ padding: "0 1.5rem", height: "80px", borderBottom: "4px solid #111111", background: "#111111" }}
+        >
+          <span className="font-black tracking-tighter text-[#F3EEE5]" style={{ fontSize: "1.4rem" }}>
+            FaChat
+          </span>
           <button
             onClick={() => setMobileOpen(false)}
-            className="text-[#111111] p-1"
+            style={{ color: "#F3EEE5", padding: "0.25rem" }}
           >
-            <X className="w-6 h-6" />
+            <X className="w-5 h-5" />
           </button>
         </div>
 
-        {/* Links */}
-        <nav className="flex-1 px-6 py-6 flex flex-col overflow-y-auto">
+        {/* Nav links */}
+        <nav className="flex-1 overflow-y-auto" style={{ padding: "0.5rem 0" }}>
           {links.map((l) => (
             <button
               key={l.href}
               onClick={() => scrollTo(l.href)}
-              className="flex items-center justify-between w-full text-left py-5 border-b-2 border-[#111111]/10 group"
+              className="group w-full text-left"
+              style={{ display: "flex", alignItems: "center", gap: "1.25rem", padding: "1.25rem 1.5rem", borderBottom: "2px solid #ECE4D7" }}
             >
-              <span className="font-black uppercase tracking-tight text-[#111111] text-base group-hover:translate-x-1 transition-transform duration-150">
+              <span
+                className="font-black tabular-nums flex-shrink-0"
+                style={{ fontSize: "0.7rem", color: "#BBBBBB", letterSpacing: "0.05em" }}
+              >
+                {l.num}
+              </span>
+              <span
+                className="font-black uppercase tracking-tight text-[#111111] flex-1 group-hover:translate-x-0.5 transition-transform duration-150"
+                style={{ fontSize: "1.15rem" }}
+              >
                 {l.label}
               </span>
-              <span className="text-[#999999] text-sm">→</span>
+              <span style={{ color: "#BBBBBB", fontSize: "1rem" }}>→</span>
             </button>
           ))}
         </nav>
 
         {/* CTAs */}
-        <div className="px-6 pb-10 pt-5 space-y-3 flex-shrink-0 border-t-4 border-[#111111]">
+        <div
+          className="flex-shrink-0"
+          style={{ padding: "1.5rem", borderTop: "4px solid #111111", background: "#ECE4D7", display: "flex", flexDirection: "column", gap: "0.75rem" }}
+        >
           <a
             href="https://fabproject-panel.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => setMobileOpen(false)}
-            className="block text-center text-sm font-bold text-[#111111] py-3.5 border-2 border-[#111111] hover:bg-[#ECE4D7] transition-colors"
+            className="block text-center font-bold text-[#111111] hover:opacity-70 transition-opacity"
+            style={{ border: "2px solid #111111", padding: "0.9rem 1rem", fontSize: "0.85rem", background: "transparent" }}
           >
             Ingresar al panel
           </a>
           <button
             onClick={() => scrollTo("#pricing")}
-            className="w-full text-sm font-black uppercase tracking-tight bg-[#111111] text-[#F3EEE5] py-4 hover:opacity-80 transition-opacity"
+            className="w-full font-black uppercase tracking-tight text-[#F3EEE5] hover:opacity-90 transition-opacity"
+            style={{ background: "#111111", padding: "1rem", fontSize: "0.9rem", boxShadow: "4px 4px 0px 0px rgba(0,0,0,0.25)" }}
           >
             Comenzar gratis →
           </button>
