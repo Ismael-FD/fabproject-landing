@@ -26,8 +26,8 @@ export default function Hero() {
           <div>
             <div
               data-reveal
-              style={{ opacity: 0, transform: "translateY(20px)", transition: "all 0.5s ease" }}
-              className="inline-block border border-[#111111] bg-[#ECE4D7] px-3 py-1 text-xs font-black uppercase tracking-widest mb-6"
+              style={{ opacity: 0, transform: "translateY(20px)", transition: "all 0.5s ease", padding: "0.5rem 1.25rem", marginBottom: "1.5rem" }}
+              className="inline-block border-2 border-[#111111] bg-[#ECE4D7] text-xs font-black uppercase tracking-widest"
             >
               IA PARA CUALQUIER NEGOCIO
             </div>
