@@ -1,0 +1,6 @@
+{
+  "buildCommand": "pnpm --filter @workspace/fachat run build",
+  "outputDirectory": "artifacts/fachat/dist/public",
+  "installCommand": "pnpm install",
+  "framework": null
+}
