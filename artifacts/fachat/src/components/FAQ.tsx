@@ -48,45 +48,44 @@ export default function FAQ() {
       },
       { threshold: 0.05 }
     );
-    ref.current?.querySelectorAll(".reveal-static").forEach((el) => observer.observe(el));
+    ref.current?.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, []);
 
   return (
-    <section id="faq" ref={ref} className="bg-[#F3EEE5] py-28 px-6">
+    <section id="faq" ref={ref} className="bg-[#F3EEE5] border-t-4 border-[#111111]">
+      <div className="section-inner px-8 py-20">
 
-      <div className="max-w-3xl mx-auto">
-
-        <div className="reveal-static reveal text-center mb-14">
-          <h2 className="font-black text-[clamp(40px,5vw,60px)] uppercase tracking-tighter text-[#111111]">
+        <div className="reveal mb-12">
+          <h2 className="font-black text-[clamp(40px,4vw,64px)] uppercase tracking-tighter text-[#111111]">
             PREGUNTAS<br />FRECUENTES
           </h2>
         </div>
 
-        <div className="space-y-0 border-t-4 border-[#111111]">
+        <div className="max-w-2xl border-t-4 border-[#111111]">
           {FAQS.map((faq, i) => (
             <div key={i} className="border-b-4 border-[#111111]">
               <button
                 onClick={() => setOpen(open === i ? null : i)}
-                className="w-full flex items-center justify-between gap-4 px-2 py-5 text-left group"
+                className="w-full flex items-center justify-between gap-4 py-5 text-left"
               >
-                <span className="font-black text-base uppercase tracking-tight text-[#111111] leading-snug">
+                <span className="font-black text-sm uppercase tracking-tight text-[#111111] leading-snug">
                   {faq.q}
                 </span>
-                <div className={`w-8 h-8 border-2 border-[#111111] flex items-center justify-center flex-shrink-0 transition-colors ${
+                <div className={`w-7 h-7 border-2 border-[#111111] flex items-center justify-center flex-shrink-0 transition-colors ${
                   open === i ? "bg-[#111111] text-[#F3EEE5]" : "bg-transparent text-[#111111]"
                 }`}>
-                  {open === i ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
+                  {open === i ? <Minus className="w-3.5 h-3.5" /> : <Plus className="w-3.5 h-3.5" />}
                 </div>
               </button>
 
               <div style={{
                 display: "grid",
                 gridTemplateRows: open === i ? "1fr" : "0fr",
-                transition: "grid-template-rows 0.3s ease",
+                transition: "grid-template-rows 0.25s ease",
               }}>
                 <div style={{ overflow: "hidden" }}>
-                  <p className="px-2 pb-5 text-[#666666] text-sm leading-relaxed font-medium">
+                  <p className="pb-5 text-[#666666] text-sm leading-relaxed font-medium">
                     {faq.a}
                   </p>
                 </div>
@@ -95,13 +94,14 @@ export default function FAQ() {
           ))}
         </div>
 
-        <div className="reveal-static reveal text-center mt-10 text-sm text-[#666666] font-medium">
+        <div className="reveal mt-8 text-sm text-[#666666] font-medium">
           ¿Tenés otra pregunta?{" "}
           <a href="mailto:fabri.ab@hotmail.com"
             className="text-[#111111] font-black underline underline-offset-4 hover:text-[#666666] transition-colors">
             Escribinos por email
           </a>
         </div>
+
       </div>
     </section>
   );

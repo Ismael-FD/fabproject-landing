@@ -26,6 +26,14 @@ body {
 ::-webkit-scrollbar-track { background: #ECE4D7; }
 ::-webkit-scrollbar-thumb { background: #111111; border-radius: 0; }
 
+/* Reliable centered container regardless of Tailwind v4 quirks */
+.section-inner {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
 .manga-shadow {
   box-shadow: 8px 8px 0px 0px #111111;
 }

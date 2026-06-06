@@ -31,41 +31,40 @@ export default function HowItWorks() {
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.05 }
     );
     ref.current?.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, []);
 
   return (
-    <section id="how" ref={ref} className="bg-[#F3EEE5] py-32 px-6">
-      <div className="max-w-7xl mx-auto">
+    <section id="how" ref={ref} className="bg-[#F3EEE5] border-t-4 border-[#111111]">
+      <div className="section-inner px-8 py-20">
 
-        <div className="reveal text-center mb-24">
-          <h2 className="font-black text-[clamp(48px,6vw,72px)] uppercase tracking-tighter text-[#111111]">
+        <div className="reveal mb-12">
+          <h2 className="font-black text-[clamp(40px,4vw,64px)] uppercase tracking-tighter text-[#111111]">
             3 PASOS SIMPLES
           </h2>
-          <p className="text-xl text-[#666666] font-medium mt-6">
+          <p className="text-lg text-[#666666] font-medium mt-3 max-w-md">
             Tu negocio automatizado en minutos, sin saber nada técnico.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mt-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-4">
           {STEPS.map((step, i) => {
             const delays = ["delay-100", "delay-200", "delay-300"];
             return (
               <div key={i}
-                className={`reveal ${delays[i]} relative border-4 border-[#111111] bg-white p-8 pt-16
-                            group hover:bg-[#111111] hover:text-[#F3EEE5] transition-colors cursor-default`}
+                className={`reveal ${delays[i]} relative border-4 border-[#111111] bg-white p-8 pt-14 group hover:bg-[#111111] transition-colors duration-200 cursor-default`}
               >
-                <div className="absolute -top-10 -left-4 text-8xl font-black text-[#ECE4D7] pointer-events-none z-0 group-hover:text-[#333333] transition-colors select-none">
+                <div className="absolute -top-8 left-4 text-7xl font-black text-[#ECE4D7] pointer-events-none select-none group-hover:text-[#2a2a2a] transition-colors">
                   {step.num}
                 </div>
                 <div className="relative z-10">
-                  <h3 className="font-black text-2xl uppercase tracking-tight mb-4 text-[#111111] group-hover:text-[#F3EEE5] transition-colors">
+                  <h3 className="font-black text-xl uppercase tracking-tight mb-3 text-[#111111] group-hover:text-[#F3EEE5] transition-colors">
                     {step.title}
                   </h3>
-                  <p className="text-[#666666] group-hover:text-[#999999] font-medium leading-relaxed transition-colors">
+                  <p className="text-[#666666] group-hover:text-[#999999] font-medium leading-relaxed text-sm transition-colors">
                     {step.desc}
                   </p>
                 </div>
@@ -74,14 +73,15 @@ export default function HowItWorks() {
           })}
         </div>
 
-        <div className="reveal text-center mt-20">
+        <div className="reveal mt-12">
           <button
             onClick={() => document.querySelector("#pricing")?.scrollIntoView({ behavior: "smooth" })}
-            className="inline-flex items-center gap-2 bg-[#111111] text-[#F3EEE5] border-2 border-[#111111] px-8 py-4 font-black uppercase tracking-tight hover:bg-transparent hover:text-[#111111] transition-colors"
+            className="inline-flex items-center gap-2 bg-[#111111] text-[#F3EEE5] border-2 border-[#111111] px-8 py-4 font-black uppercase tracking-tight text-sm hover:bg-transparent hover:text-[#111111] transition-colors"
           >
             QUIERO EMPEZAR
           </button>
         </div>
+
       </div>
     </section>
   );

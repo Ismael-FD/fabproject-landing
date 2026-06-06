@@ -67,9 +67,7 @@ export default function Pricing() {
         );
         if (!res.ok) return;
         const data = await res.json();
-        if (data?.plans?.length) {
-          setPlans(data.plans);
-        }
+        if (data?.plans?.length) setPlans(data.plans);
       } catch {
         // Silent fallback to defaults
       }
@@ -87,7 +85,7 @@ export default function Pricing() {
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.05 }
     );
     ref.current?.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
     return () => observer.disconnect();
@@ -98,24 +96,22 @@ export default function Pricing() {
     window.open(`https://wa.me/5491100000000?text=${msg}`, "_blank");
   };
 
-  // Show only basico + profesional as the two primary plans
   const visiblePlans = plans.filter((p) => p.key === "basico" || p.key === "profesional");
 
   return (
-    <section id="pricing" ref={ref}
-      className="bg-[#ECE4D7] border-t-4 border-[#111111] py-32 px-6">
+    <section id="pricing" ref={ref} className="bg-[#ECE4D7] border-t-4 border-[#111111]">
+      <div className="section-inner px-8 py-20">
 
-      <div className="relative z-10 max-w-6xl mx-auto">
-        <div className="reveal text-center mb-16">
-          <h2 className="font-black text-[clamp(48px,6vw,72px)] uppercase tracking-tighter text-[#111111] mb-4">
+        <div className="reveal mb-12">
+          <h2 className="font-black text-[clamp(40px,4vw,64px)] uppercase tracking-tighter text-[#111111]">
             PRECIOS CLAROS
           </h2>
-          <p className="text-xl text-[#666666] font-medium max-w-xl mx-auto">
+          <p className="text-lg text-[#666666] font-medium mt-3 max-w-md">
             Sin sorpresas. Todos los planes incluyen configuración, soporte y panel web.
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl">
           {visiblePlans.map((plan, i) => {
             const meta = PLAN_META[plan.key] || {};
             const delays = ["delay-100", "delay-200"];
@@ -127,56 +123,50 @@ export default function Pricing() {
                   isHighlight ? "bg-[#111111] text-[#F3EEE5]" : "bg-white text-[#111111]"
                 }`}
                 style={isHighlight
-                  ? { boxShadow: "16px 16px 0px 0px #F3EEE5, 16px 16px 0px 4px #111111" }
-                  : undefined
+                  ? { boxShadow: "12px 12px 0px 0px #F3EEE5, 12px 12px 0px 3px #111111" }
+                  : { boxShadow: "6px 6px 0px 0px #111111" }
                 }
               >
                 {meta.badge && (
-                  <div className="absolute top-0 right-0 bg-[#F3EEE5] text-[#111111] font-black text-xs uppercase px-4 py-2 border-b-4 border-l-4 border-[#111111]">
+                  <div className="absolute top-0 right-0 bg-[#F3EEE5] text-[#111111] font-black text-xs uppercase px-3 py-1.5 border-b-4 border-l-4 border-[#111111]">
                     {meta.badge}
                   </div>
                 )}
 
-                <div className={`text-sm font-black uppercase tracking-widest mb-4 ${
-                  isHighlight ? "text-[#999999]" : "text-[#666666]"
-                }`}>
+                <div className={`text-xs font-black uppercase tracking-widest mb-4 ${isHighlight ? "text-[#888888]" : "text-[#666666]"}`}>
                   {meta.name}
                 </div>
 
-                <div className="mb-8">
+                <div className="mb-6">
                   {plan.price ? (
                     <div className="flex items-end gap-1 flex-wrap">
-                      <span className={`text-xs mb-2 ${isHighlight ? "text-[#999999]" : "text-[#666666]"}`}>ARS $</span>
-                      <span className={`text-6xl font-black tracking-tighter leading-none ${
-                        isHighlight ? "text-[#F3EEE5]" : "text-[#111111]"
-                      }`}>
+                      <span className={`text-xs mb-1.5 ${isHighlight ? "text-[#888888]" : "text-[#666666]"}`}>ARS $</span>
+                      <span className={`text-5xl font-black tracking-tighter leading-none ${isHighlight ? "text-[#F3EEE5]" : "text-[#111111]"}`}>
                         {formatPrice(plan.price)}
                       </span>
-                      <span className={`text-2xl mb-1 ${isHighlight ? "text-[#999999]" : "text-[#666666]"}`}>/mes</span>
+                      <span className={`text-xl mb-1 ${isHighlight ? "text-[#888888]" : "text-[#666666]"}`}>/mes</span>
                     </div>
                   ) : (
-                    <span className={`text-4xl font-black ${isHighlight ? "text-[#F3EEE5]" : "text-[#111111]"}`}>
+                    <span className={`text-3xl font-black ${isHighlight ? "text-[#F3EEE5]" : "text-[#111111]"}`}>
                       A consultar
                     </span>
                   )}
                 </div>
 
-                <ul className="space-y-4 mb-8 flex-1">
+                <ul className="space-y-3 mb-8 flex-1">
                   {(meta.features || []).map((f, j) => (
                     <li key={j} className="flex items-start gap-3">
-                      <div className={`w-5 h-5 border-2 flex items-center justify-center flex-shrink-0 mt-0.5 ${
-                        isHighlight ? "border-[#F3EEE5]" : "border-[#111111]"
-                      }`}>
-                        <Check className={`w-3 h-3 ${isHighlight ? "text-[#F3EEE5]" : "text-[#111111]"}`} strokeWidth={4} />
+                      <div className={`w-4 h-4 border-2 flex items-center justify-center flex-shrink-0 mt-0.5 ${isHighlight ? "border-[#F3EEE5]" : "border-[#111111]"}`}>
+                        <Check className={`w-2.5 h-2.5 ${isHighlight ? "text-[#F3EEE5]" : "text-[#111111]"}`} strokeWidth={4} />
                       </div>
-                      <span className={`text-sm font-medium ${isHighlight ? "text-[#F3EEE5]" : "text-[#111111]"}`}>{f}</span>
+                      <span className={`text-sm font-medium ${isHighlight ? "text-[#CCCCCC]" : "text-[#444444]"}`}>{f}</span>
                     </li>
                   ))}
                 </ul>
 
                 <button
                   onClick={() => handleCTA(meta.name)}
-                  className={`w-full py-4 font-black uppercase tracking-tight text-sm border-2 transition-colors ${
+                  className={`w-full py-3.5 font-black uppercase tracking-tight text-sm border-2 transition-colors ${
                     isHighlight
                       ? "bg-[#F3EEE5] text-[#111111] border-[#F3EEE5] hover:bg-transparent hover:text-[#F3EEE5]"
                       : "bg-white text-[#111111] border-[#111111] hover:bg-[#111111] hover:text-[#F3EEE5]"
@@ -189,9 +179,10 @@ export default function Pricing() {
           })}
         </div>
 
-        <div className="reveal text-center mt-10 text-sm text-[#666666] font-medium">
+        <div className="reveal mt-8 text-sm text-[#666666] font-medium">
           ✦ Todos los planes incluyen 7 días de prueba gratuita · Sin permanencia mínima
         </div>
+
       </div>
     </section>
   );

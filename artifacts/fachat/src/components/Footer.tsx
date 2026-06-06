@@ -4,19 +4,19 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#F3EEE5] border-t-4 border-[#111111] py-12 px-6">
-      <div className="max-w-7xl mx-auto">
+    <footer className="bg-[#F3EEE5] border-t-4 border-[#111111]">
+      <div className="section-inner px-8 py-14">
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
           <div className="md:col-span-2 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-[#111111] text-[#F3EEE5] font-black text-sm flex items-center justify-center">
+              <div className="w-8 h-8 bg-[#111111] text-[#F3EEE5] font-black text-xs flex items-center justify-center flex-shrink-0">
                 FC
               </div>
               <span className="font-black text-xl tracking-tighter text-[#111111]">FaChat</span>
             </div>
             <p className="text-[#666666] text-sm leading-relaxed font-medium max-w-xs">
-              Asistente virtual de WhatsApp para negocios en Argentina. Barberías, tiendas, restaurantes, y más. Automatizá la atención sin perder el trato humano.
+              Asistente virtual de WhatsApp para negocios en Argentina. Barberías, tiendas, restaurantes, y más.
             </p>
             <div className="flex items-center gap-3">
               <a href="https://wa.me/5491100000000" target="_blank" rel="noopener noreferrer"
@@ -31,7 +31,7 @@ export default function Footer() {
           </div>
 
           <div className="space-y-4">
-            <h4 className="text-[#111111] text-sm font-black uppercase tracking-widest">Producto</h4>
+            <h4 className="text-[#111111] text-xs font-black uppercase tracking-widest">Producto</h4>
             <ul className="space-y-2.5">
               {[
                 { label: "Características", href: "#features" },
@@ -50,7 +50,7 @@ export default function Footer() {
           </div>
 
           <div className="space-y-4">
-            <h4 className="text-[#111111] text-sm font-black uppercase tracking-widest">Acceso</h4>
+            <h4 className="text-[#111111] text-xs font-black uppercase tracking-widest">Acceso</h4>
             <ul className="space-y-2.5">
               <li>
                 <a href="https://fabproject-panel.vercel.app/" target="_blank" rel="noopener noreferrer"
@@ -88,6 +88,7 @@ export default function Footer() {
             Hecho en Argentina 🇦🇷
           </p>
         </div>
+
       </div>
     </footer>
   );

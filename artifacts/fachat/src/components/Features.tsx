@@ -60,7 +60,7 @@ export default function Features() {
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.05 }
     );
     ref.current?.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
     return () => observer.disconnect();
@@ -68,33 +68,31 @@ export default function Features() {
 
   return (
     <section id="features" ref={ref}
-      className="bg-[#ECE4D7] border-t-4 border-[#111111] py-24 px-6">
-      <div className="max-w-7xl mx-auto">
+      className="bg-[#ECE4D7] border-t-4 border-[#111111]">
+      <div className="section-inner px-8 py-20">
 
-        <div className="reveal mb-16">
-          <h2 className="text-[clamp(48px,6vw,72px)] font-black uppercase tracking-tighter text-[#111111] border-l-8 border-[#111111] pl-6 leading-tight">
+        <div className="reveal mb-12">
+          <h2 className="text-[clamp(40px,4vw,64px)] font-black uppercase tracking-tighter text-[#111111] leading-tight pl-5 border-l-8 border-[#111111]">
             TODO LO QUE<br />NECESITÁS
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {FEATURES.map((f, i) => {
             const Icon = f.icon;
             const delays = ["", "delay-100", "delay-200", "delay-300"];
             return (
               <div key={i}
-                className={`reveal ${delays[i % 4]}
-                            group bg-white border-4 border-[#111111] p-8
-                            hover:-translate-y-2 transition-transform duration-300 cursor-default`}
-                style={{ boxShadow: "8px 8px 0px 0px #111111" }}
+                className={`reveal ${delays[i % 4]} group bg-white border-4 border-[#111111] p-6 hover:-translate-y-1 transition-transform duration-200 cursor-default`}
+                style={{ boxShadow: "6px 6px 0px 0px #111111" }}
               >
-                <div className="w-16 h-16 border-2 border-[#111111] bg-[#F3EEE5] flex items-center justify-center mb-6">
-                  <Icon className="w-8 h-8 text-[#111111]" />
+                <div className="w-12 h-12 border-2 border-[#111111] bg-[#F3EEE5] flex items-center justify-center mb-5">
+                  <Icon className="w-6 h-6 text-[#111111]" />
                 </div>
-                <h3 className="text-[#111111] font-black text-xl uppercase tracking-tight mb-4 leading-snug">
+                <h3 className="text-[#111111] font-black text-base uppercase tracking-tight mb-3 leading-snug">
                   {f.title}
                 </h3>
-                <p className="text-[#666666] text-sm leading-relaxed font-medium">{f.desc}</p>
+                <p className="text-[#666666] text-sm leading-relaxed">{f.desc}</p>
               </div>
             );
           })}
