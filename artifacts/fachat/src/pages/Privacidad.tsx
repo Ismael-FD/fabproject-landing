@@ -11,7 +11,7 @@ const sections = [
     num: "01",
     title: "Responsable del Tratamiento de Datos",
     content: (
-      <div className="space-y-3 text-[#666666] leading-relaxed" style={{ fontSize: "0.95rem" }}>
+      <div className="space-y-3 text-[#666666] leading-relaxed" style={{ fontSize: "1.1rem" }}>
         <p>El responsable del tratamiento de los datos personales es <strong className="text-[#111111]">FaChat</strong>, operando conforme a las leyes de la <strong className="text-[#111111]">{COUNTRY}</strong>.</p>
         <p>Para ejercer tus derechos o realizar consultas sobre privacidad, contactanos en: <a href={`mailto:${EMAIL_LEGAL}`} className="text-[#111111] font-bold underline underline-offset-2">{EMAIL_LEGAL}</a>.</p>
         <p>Esta política se aplica a todos los usuarios del sitio web de FaChat y a todos los Clientes que contraten nuestros servicios.</p>
@@ -22,7 +22,7 @@ const sections = [
     num: "02",
     title: "Qué Datos Recopilamos",
     content: (
-      <div className="space-y-6" style={{ fontSize: "0.95rem" }}>
+      <div className="space-y-6" style={{ fontSize: "1.1rem" }}>
         <div>
           <p className="font-black text-xs uppercase tracking-widest text-[#111111] mb-3">2.1 Datos del Cliente</p>
           <ul className="space-y-2 text-[#666666] leading-relaxed">
@@ -52,7 +52,7 @@ const sections = [
     num: "03",
     title: "Cómo Usamos los Datos",
     content: (
-      <ul className="space-y-2 text-[#666666] leading-relaxed" style={{ fontSize: "0.95rem" }}>
+      <ul className="space-y-2 text-[#666666] leading-relaxed" style={{ fontSize: "1.1rem" }}>
         {["Prestar el servicio de asistente virtual de WhatsApp.", "Gestionar la relación comercial con el Cliente.", "Procesar pedidos y reservas realizados a través del asistente.", "Mejorar el servicio y el rendimiento del asistente.", "Cumplir con obligaciones legales y fiscales."].map((item, i) => (
           <li key={i} className="flex items-start gap-3">
             <span className="mt-2 w-1.5 h-1.5 bg-[#111111] flex-shrink-0" />
@@ -66,21 +66,21 @@ const sections = [
     num: "04",
     title: "Compartición de Datos con Terceros",
     content: (
-      <p className="text-[#666666] leading-relaxed" style={{ fontSize: "0.95rem" }}>FaChat no vende ni alquila datos personales a terceros. Podemos compartir datos únicamente con proveedores de infraestructura y servicios necesarios para el funcionamiento del sistema, siempre bajo acuerdos de confidencialidad.</p>
+      <p className="text-[#666666] leading-relaxed" style={{ fontSize: "1.1rem" }}>FaChat no vende ni alquila datos personales a terceros. Podemos compartir datos únicamente con proveedores de infraestructura y servicios necesarios para el funcionamiento del sistema, siempre bajo acuerdos de confidencialidad.</p>
     ),
   },
   {
     num: "05",
     title: "Conservación de los Datos",
     content: (
-      <p className="text-[#666666] leading-relaxed" style={{ fontSize: "0.95rem" }}>Los datos se conservan durante la vigencia del contrato y por un período adicional de 2 años para cumplir con obligaciones legales. Tras ese período, los datos son eliminados o anonimizados de manera irreversible.</p>
+      <p className="text-[#666666] leading-relaxed" style={{ fontSize: "1.1rem" }}>Los datos se conservan durante la vigencia del contrato y por un período adicional de 2 años para cumplir con obligaciones legales. Tras ese período, los datos son eliminados o anonimizados de manera irreversible.</p>
     ),
   },
   {
     num: "06",
     title: "Seguridad de los Datos",
     content: (
-      <ul className="space-y-2 text-[#666666] leading-relaxed" style={{ fontSize: "0.95rem" }}>
+      <ul className="space-y-2 text-[#666666] leading-relaxed" style={{ fontSize: "1.1rem" }}>
         {["Cifrado de datos en tránsito mediante TLS/HTTPS.", "Almacenamiento de contraseñas con hash bcrypt.", "Autenticación mediante JWT con tiempo de expiración.", "Acceso restringido mediante autenticación por clave SSH.", "Copias de seguridad periódicas de la base de datos."].map((item, i) => (
           <li key={i} className="flex items-start gap-3">
             <span className="mt-2 w-1.5 h-1.5 bg-[#111111] flex-shrink-0" />
@@ -94,21 +94,21 @@ const sections = [
     num: "07",
     title: "Tus Derechos — Ley 25.326",
     content: (
-      <p className="text-[#666666] leading-relaxed" style={{ fontSize: "0.95rem" }}>De acuerdo con la Ley N° 25.326 de la {COUNTRY}, tenés derecho a acceder, rectificar, suprimir, y oponerte al tratamiento de tus datos personales. Para ejercer cualquiera de estos derechos, enviá un email a <a href={`mailto:${EMAIL_LEGAL}`} className="text-[#111111] font-bold underline underline-offset-2">{EMAIL_LEGAL}</a>.</p>
+      <p className="text-[#666666] leading-relaxed" style={{ fontSize: "1.1rem" }}>De acuerdo con la Ley N° 25.326 de la {COUNTRY}, tenés derecho a acceder, rectificar, suprimir, y oponerte al tratamiento de tus datos personales. Para ejercer cualquiera de estos derechos, enviá un email a <a href={`mailto:${EMAIL_LEGAL}`} className="text-[#111111] font-bold underline underline-offset-2">{EMAIL_LEGAL}</a>.</p>
     ),
   },
   {
     num: "08",
     title: "Cookies y Tecnologías de Seguimiento",
     content: (
-      <p className="text-[#666666] leading-relaxed" style={{ fontSize: "0.95rem" }}>El sitio web puede utilizar cookies técnicas estrictamente necesarias para el funcionamiento. No utilizamos cookies de seguimiento publicitario ni compartimos datos de navegación con redes de publicidad.</p>
+      <p className="text-[#666666] leading-relaxed" style={{ fontSize: "1.1rem" }}>El sitio web puede utilizar cookies técnicas estrictamente necesarias para el funcionamiento. No utilizamos cookies de seguimiento publicitario ni compartimos datos de navegación con redes de publicidad.</p>
     ),
   },
   {
     num: "09",
     title: "Cambios en esta Política",
     content: (
-      <p className="text-[#666666] leading-relaxed" style={{ fontSize: "0.95rem" }}>Podemos actualizar esta Política periódicamente. Cuando realicemos cambios sustanciales, te notificaremos por correo electrónico con al menos <strong className="text-[#111111]">15 días de anticipación</strong>.</p>
+      <p className="text-[#666666] leading-relaxed" style={{ fontSize: "1.1rem" }}>Podemos actualizar esta Política periódicamente. Cuando realicemos cambios sustanciales, te notificaremos por correo electrónico con al menos <strong className="text-[#111111]">15 días de anticipación</strong>.</p>
     ),
   },
   {
@@ -121,11 +121,11 @@ const sections = [
       >
         <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6" style={{ marginBottom: "1.25rem" }}>
           <span className="font-black text-xs uppercase tracking-widest text-[#111111] sm:w-16 flex-shrink-0">Email</span>
-          <a href={`mailto:${EMAIL_LEGAL}`} className="text-[#666666] font-medium hover:text-[#111111] transition-colors break-all" style={{ fontSize: "0.95rem" }}>{EMAIL_LEGAL}</a>
+          <a href={`mailto:${EMAIL_LEGAL}`} className="text-[#666666] font-medium hover:text-[#111111] transition-colors break-all" style={{ fontSize: "1.1rem" }}>{EMAIL_LEGAL}</a>
         </div>
         <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6" style={{ paddingTop: "1.25rem", borderTop: "2px solid #ECE4D7" }}>
           <span className="font-black text-xs uppercase tracking-widest text-[#111111] sm:w-16 flex-shrink-0">Panel</span>
-          <a href={PANEL_URL} target="_blank" rel="noopener noreferrer" className="text-[#666666] font-medium hover:text-[#111111] transition-colors break-all" style={{ fontSize: "0.95rem" }}>{PANEL_URL}</a>
+          <a href={PANEL_URL} target="_blank" rel="noopener noreferrer" className="text-[#666666] font-medium hover:text-[#111111] transition-colors break-all" style={{ fontSize: "1.1rem" }}>{PANEL_URL}</a>
         </div>
       </div>
     ),
@@ -169,7 +169,7 @@ export default function Privacidad() {
                   <div>
                     <h2
                       className="font-black uppercase tracking-tight text-[#111111]"
-                      style={{ fontSize: "clamp(14px, 2.5vw, 18px)", marginBottom: "1.25rem" }}
+                      style={{ fontSize: "clamp(16px, 2.5vw, 22px)", marginBottom: "1.25rem" }}
                     >
                       {section.title}
                     </h2>
