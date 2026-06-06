@@ -83,10 +83,10 @@ export default function Features() {
             const delays = ["", "delay-100", "delay-200", "delay-300"];
             return (
               <div key={i}
-                className={`reveal ${delays[i % 4]} group bg-white border-4 border-[#111111] p-6 hover:-translate-y-1 transition-transform duration-200 cursor-default`}
+                className={`reveal ${delays[i % 4]} group bg-white border-4 border-[#111111] p-8 hover:-translate-y-1 transition-transform duration-200 cursor-default`}
                 style={{ boxShadow: "6px 6px 0px 0px #111111" }}
               >
-                <div className="w-12 h-12 border-2 border-[#111111] bg-[#F3EEE5] flex items-center justify-center mb-5">
+                <div className="w-12 h-12 border-2 border-[#111111] bg-[#F3EEE5] flex items-center justify-center mb-6">
                   <Icon className="w-6 h-6 text-[#111111]" />
                 </div>
                 <h3 className="text-[#111111] font-black text-base uppercase tracking-tight mb-3 leading-snug">

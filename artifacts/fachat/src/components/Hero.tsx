@@ -60,7 +60,7 @@ export default function Hero() {
                 { icon: Car, label: "Lavaderos" },
               ].map(({ icon: Icon, label }) => (
                 <div key={label}
-                  className="border-2 border-[#111111] bg-white px-3 py-1.5 text-xs font-black flex items-center gap-2 text-[#111111]">
+                  className="border-2 border-[#111111] bg-white px-4 py-2 text-xs font-black flex items-center gap-2 text-[#111111]">
                   <Icon className="w-3.5 h-3.5" />
                   {label}
                 </div>
@@ -106,18 +106,18 @@ export default function Hero() {
                 </span>
               </div>
 
-              <div className="p-5 flex flex-col gap-3">
-                <div className="self-end max-w-[70%] bg-[#F3EEE5] border-2 border-[#111111] p-3 text-sm text-[#111111] break-words">
+              <div className="p-6 flex flex-col gap-3">
+                <div className="self-end max-w-[70%] bg-[#F3EEE5] border-2 border-[#111111] px-4 py-3 text-sm text-[#111111] break-words">
                   Hola! Quiero sacar turno para mañana ✂️
                 </div>
-                <div className="self-start max-w-[70%] bg-white border-2 border-[#111111] p-3 text-sm text-[#111111] break-words">
+                <div className="self-start max-w-[70%] bg-white border-2 border-[#111111] px-4 py-3 text-sm text-[#111111] break-words">
                   ¡Hola! Tenemos turnos a las 10:00, 12:30 y 16:00. ¿Cuál preferís?
                 </div>
-                <div className="self-end max-w-[70%] bg-[#F3EEE5] border-2 border-[#111111] p-3 text-sm text-[#111111] break-words">
+                <div className="self-end max-w-[70%] bg-[#F3EEE5] border-2 border-[#111111] px-4 py-3 text-sm text-[#111111] break-words">
                   A las 10, para corte y barba
                 </div>
-                <div className="self-start max-w-[75%] border-2 border-[#111111] bg-[#ECE4D7] p-3 text-[#111111]">
-                  <div className="font-black text-xs uppercase border-b-2 border-[#111111] pb-1.5 mb-2">
+                <div className="self-start max-w-[75%] border-2 border-[#111111] bg-[#ECE4D7] px-4 py-3 text-[#111111]">
+                  <div className="font-black text-xs uppercase border-b-2 border-[#111111] pb-2 mb-2.5">
                     TURNO CONFIRMADO ✓
                   </div>
                   <div className="text-xs mb-1.5">📅 Mañana · 10:00 hs · Corte + Barba</div>

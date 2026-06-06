@@ -166,7 +166,7 @@ export default function Pricing() {
 
                 <button
                   onClick={() => handleCTA(meta.name)}
-                  className={`w-full py-3.5 font-black uppercase tracking-tight text-sm border-2 transition-colors ${
+                  className={`w-full py-4 font-black uppercase tracking-tight text-sm border-2 transition-colors ${
                     isHighlight
                       ? "bg-[#F3EEE5] text-[#111111] border-[#F3EEE5] hover:bg-transparent hover:text-[#F3EEE5]"
                       : "bg-white text-[#111111] border-[#111111] hover:bg-[#111111] hover:text-[#F3EEE5]"
