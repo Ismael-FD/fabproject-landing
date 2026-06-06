@@ -181,9 +181,7 @@ export default function Pricing() {
         </div>
 
         <div className="reveal text-sm text-[#666666] font-medium border-t-2 border-[#111111]"
-          style={{ marginTop: "2.5rem", paddingTop: "1.25rem" }}>
-          ✦ Todos los planes incluyen 7 días de prueba gratuita · Sin permanencia mínima
-        </div>
+          style={{ marginTop: "2.5rem", paddingTop: "1.25rem" }}>✦ Se incluyen 5 días de prueba gratuita · Sin permanencia mínima</div>
 
       </div>
     </section>
