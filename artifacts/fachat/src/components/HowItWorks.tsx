@@ -39,7 +39,7 @@ export default function HowItWorks() {
 
   return (
     <section id="how" ref={ref} className="bg-[#F3EEE5] border-t-4 border-[#111111]">
-      <div className="section-inner py-20">
+      <div className="section-inner">
 
         <div className="reveal mb-12">
           <h2 className="font-black text-[clamp(40px,4vw,64px)] uppercase tracking-tighter text-[#111111]">

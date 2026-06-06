@@ -19,7 +19,7 @@ export default function Hero() {
 
   return (
     <section id="hero" ref={ref} className="bg-[#F3EEE5] overflow-hidden">
-      <div className="section-inner pt-20 pb-24">
+      <div className="section-inner hero-inner">
         <div className="grid lg:grid-cols-2 gap-12 xl:gap-20 items-center">
 
           {/* LEFT — copy */}

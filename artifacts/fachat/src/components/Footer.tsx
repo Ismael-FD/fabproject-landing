@@ -5,7 +5,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-[#F3EEE5] border-t-4 border-[#111111]">
-      <div className="section-inner py-14">
+      <div className="section-inner footer-inner">
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
           <div className="md:col-span-2 space-y-4">

@@ -19,7 +19,7 @@ export default function Navbar() {
   return (
     <>
       <nav className="sticky top-0 left-0 right-0 z-50 bg-[#F3EEE5] border-b-4 border-[#111111]">
-        <div className="section-inner flex items-center justify-between h-20 px-8">
+        <div className="section-inner nav-inner flex items-center justify-between h-20">
           <button onClick={() => scrollTo("#hero")} className="flex items-center gap-3">
             <div className="w-10 h-10 bg-[#111111] text-[#F3EEE5] font-black text-sm flex items-center justify-center flex-shrink-0">
               FC
