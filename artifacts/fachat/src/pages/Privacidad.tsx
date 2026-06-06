@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
@@ -133,6 +134,7 @@ const sections = [
 ];
 
 export default function Privacidad() {
+  useEffect(() => { window.scrollTo(0, 0); }, []);
   return (
     <div className="bg-[#F3EEE5] min-h-screen">
       <Navbar />
