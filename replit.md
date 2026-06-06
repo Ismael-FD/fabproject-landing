@@ -1,6 +1,6 @@
-# FaChat Landing
+# [Project name]
 
-FaChat is a WhatsApp AI assistant for Argentine businesses — a landing page that presents the product, pricing, and FAQs, with CTAs that open WhatsApp demos.
+_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
 
 ## Run & Operate
 
@@ -22,22 +22,15 @@ FaChat is a WhatsApp AI assistant for Argentine businesses — a landing page th
 
 ## Where things live
 
-- `artifacts/fachat/` — React + Vite landing page (served at `/`)
-- `artifacts/fachat/src/pages/` — Home, Privacidad, Terminos pages
-- `artifacts/fachat/src/components/` — Navbar, Hero, Features, HowItWorks, Pricing, FAQ, Footer
-- `artifacts/fachat/src/index.css` — global styles, brand tokens, animations
-- `artifacts/fachat/public/` — favicon.png, apple-touch-icon.png
+_Populate as you build — short repo map plus pointers to the source-of-truth file for DB schema, API contracts, theme files, etc._
 
 ## Architecture decisions
 
-- Pure frontend app — no backend needed. Pricing data fetches from an external ngrok endpoint with a silent fallback to hardcoded defaults.
-- wouter used for client-side routing (/, /privacidad, /terminos)
-- lucide-react pinned to 0.383.0 (the version the original project used; catalog 0.545.0 has a different ESM structure that breaks Vite's bundler)
-- Tailwind v4 with @theme inline for brand colors and font families
+_Populate as you build — non-obvious choices a reader couldn't infer from the code (3-5 bullets)._
 
 ## Product
 
-FaChat landing page with: hero section with WhatsApp chat mockup, 8-feature grid, 4-step "how it works", 3-tier pricing (Básico/Profesional/Enterprise), FAQ accordion, and legal pages (Política de Privacidad + Términos y Condiciones).
+_Describe the high-level user-facing capabilities of this app once they exist._
 
 ## User preferences
 
