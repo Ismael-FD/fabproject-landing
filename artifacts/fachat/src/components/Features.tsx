@@ -67,51 +67,34 @@ export default function Features() {
   }, []);
 
   return (
-    <section id="features" ref={ref} className="relative py-28 px-6 overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/30 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/20 to-transparent" />
-      </div>
+    <section id="features" ref={ref}
+      className="bg-[#ECE4D7] border-t-4 border-[#111111] py-24 px-6">
+      <div className="max-w-7xl mx-auto">
 
-      <div className="max-w-6xl mx-auto">
-        <div className="reveal text-center mb-16 space-y-4">
-          <span className="inline-block text-xs font-semibold tracking-widest uppercase
-                           text-blue-400 bg-blue-500/10 border border-blue-500/20
-                           px-4 py-1.5 rounded-full">
-            Características
-          </span>
-          <h2 className="font-display text-4xl sm:text-5xl text-white leading-tight">
-            Todo lo que tu negocio<br />
-            <span className="gradient-text italic">necesita para crecer</span>
+        <div className="reveal mb-16">
+          <h2 className="text-[clamp(48px,6vw,72px)] font-black uppercase tracking-tighter text-[#111111] border-l-8 border-[#111111] pl-6 leading-tight">
+            TODO LO QUE<br />NECESITÁS
           </h2>
-          <p className="text-gray-400 text-lg max-w-xl mx-auto font-light">
-            FaChat no es solo un chatbot. Es un sistema completo de atención y gestión para cualquier tipo de negocio.
-          </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {FEATURES.map((f, i) => {
             const Icon = f.icon;
             const delays = ["", "delay-100", "delay-200", "delay-300"];
             return (
               <div key={i}
                 className={`reveal ${delays[i % 4]}
-                            group relative bg-[#0c0f1a] border border-white/[0.06]
-                            rounded-2xl p-6 hover:border-blue-500/30
-                            hover:bg-[#111827] transition-all duration-300
-                            hover:-translate-y-1 cursor-default`}>
-                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100
-                                transition-opacity duration-300
-                                bg-gradient-to-br from-blue-500/5 to-transparent" />
-                <div className="relative z-10">
-                  <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20
-                                  flex items-center justify-center mb-4
-                                  group-hover:bg-blue-500/20 transition-colors">
-                    <Icon className="w-5 h-5 text-blue-400" />
-                  </div>
-                  <h3 className="text-white font-semibold text-base mb-2 leading-snug">{f.title}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed font-light">{f.desc}</p>
+                            group bg-white border-4 border-[#111111] p-8
+                            hover:-translate-y-2 transition-transform duration-300 cursor-default`}
+                style={{ boxShadow: "8px 8px 0px 0px #111111" }}
+              >
+                <div className="w-16 h-16 border-2 border-[#111111] bg-[#F3EEE5] flex items-center justify-center mb-6">
+                  <Icon className="w-8 h-8 text-[#111111]" />
                 </div>
+                <h3 className="text-[#111111] font-black text-xl uppercase tracking-tight mb-4 leading-snug">
+                  {f.title}
+                </h3>
+                <p className="text-[#666666] text-sm leading-relaxed font-medium">{f.desc}</p>
               </div>
             );
           })}

@@ -53,47 +53,30 @@ export default function FAQ() {
   }, []);
 
   return (
-    <section id="faq" ref={ref} className="relative py-28 px-6 overflow-hidden">
-      <div className="absolute inset-0 bg-[#0c0f1a] pointer-events-none" />
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/20 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/20 to-transparent" />
-      </div>
+    <section id="faq" ref={ref} className="bg-[#F3EEE5] py-28 px-6">
 
-      <div className="relative z-10 max-w-3xl mx-auto">
+      <div className="max-w-3xl mx-auto">
 
-        <div className="reveal-static reveal text-center mb-14 space-y-4">
-          <span className="inline-block text-xs font-semibold tracking-widest uppercase
-                           text-blue-400 bg-blue-500/10 border border-blue-500/20
-                           px-4 py-1.5 rounded-full">
-            Preguntas frecuentes
-          </span>
-          <h2 className="font-display text-4xl sm:text-5xl text-white leading-tight">
-            Todo lo que querés<br />
-            <span className="gradient-text italic">saber antes de empezar</span>
+        <div className="reveal-static reveal text-center mb-14">
+          <h2 className="font-black text-[clamp(40px,5vw,60px)] uppercase tracking-tighter text-[#111111]">
+            PREGUNTAS<br />FRECUENTES
           </h2>
         </div>
 
-        <div className="space-y-3">
+        <div className="space-y-0 border-t-4 border-[#111111]">
           {FAQS.map((faq, i) => (
-            <div key={i}
-              className={`border rounded-2xl overflow-hidden transition-colors duration-300 ${
-                open === i
-                  ? "border-blue-500/30 bg-[#111827]"
-                  : "border-white/[0.06] bg-[#0c0f1a] hover:border-white/[0.12]"
-              }`}>
+            <div key={i} className="border-b-4 border-[#111111]">
               <button
                 onClick={() => setOpen(open === i ? null : i)}
-                className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left">
-                <span className={`font-medium text-base leading-snug transition-colors ${
-                  open === i ? "text-white" : "text-gray-300"
-                }`}>
+                className="w-full flex items-center justify-between gap-4 px-2 py-5 text-left group"
+              >
+                <span className="font-black text-base uppercase tracking-tight text-[#111111] leading-snug">
                   {faq.q}
                 </span>
-                <div className={`w-7 h-7 rounded-xl flex items-center justify-center flex-shrink-0 transition-all ${
-                  open === i ? "bg-blue-500 text-white" : "bg-white/5 text-gray-500"
+                <div className={`w-8 h-8 border-2 border-[#111111] flex items-center justify-center flex-shrink-0 transition-colors ${
+                  open === i ? "bg-[#111111] text-[#F3EEE5]" : "bg-transparent text-[#111111]"
                 }`}>
-                  {open === i ? <Minus className="w-3.5 h-3.5" /> : <Plus className="w-3.5 h-3.5" />}
+                  {open === i ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
                 </div>
               </button>
 
@@ -103,7 +86,7 @@ export default function FAQ() {
                 transition: "grid-template-rows 0.3s ease",
               }}>
                 <div style={{ overflow: "hidden" }}>
-                  <p className="px-6 pb-5 text-gray-400 text-sm leading-relaxed font-light">
+                  <p className="px-2 pb-5 text-[#666666] text-sm leading-relaxed font-medium">
                     {faq.a}
                   </p>
                 </div>
@@ -112,10 +95,10 @@ export default function FAQ() {
           ))}
         </div>
 
-        <div className="reveal-static reveal text-center mt-10 text-sm text-gray-500">
+        <div className="reveal-static reveal text-center mt-10 text-sm text-[#666666] font-medium">
           ¿Tenés otra pregunta?{" "}
           <a href="mailto:fabri.ab@hotmail.com"
-            className="text-blue-400 hover:text-blue-300 underline underline-offset-4 transition-colors">
+            className="text-[#111111] font-black underline underline-offset-4 hover:text-[#666666] transition-colors">
             Escribinos por email
           </a>
         </div>

@@ -1,26 +1,20 @@
 import { useEffect, useRef } from "react";
-import { PhoneCall, Settings, Zap, TrendingUp } from "lucide-react";
 
 const STEPS = [
   {
-    icon: PhoneCall,
-    title: "Agendás una demo",
-    desc: "Hablamos 20 minutos. Te mostramos el sistema funcionando con un negocio real y respondemos todas tus dudas.",
+    num: "01",
+    title: "Conectá tu WhatsApp",
+    desc: "Vinculamos tu número de WhatsApp Business al sistema. Sin apps extra, sin complicaciones.",
   },
   {
-    icon: Settings,
-    title: "Configuramos todo",
-    desc: "Cargamos tu catálogo, horarios, servicios y personalizamos el tono del asistente. Vos no tocás nada técnico.",
+    num: "02",
+    title: "Configurá tu negocio",
+    desc: "Cargamos tu catálogo, horarios y servicios. Personalizamos el tono del asistente para tu marca.",
   },
   {
-    icon: Zap,
-    title: "Activamos en minutos",
-    desc: "Conectamos tu número de WhatsApp. En menos de 10 minutos tu asistente ya está activo atendiendo clientes.",
-  },
-  {
-    icon: TrendingUp,
-    title: "Crecés sin fricción",
-    desc: "Desde tu panel ves las consultas y pedidos en tiempo real, editás tu catálogo y monitoreás las métricas.",
+    num: "03",
+    title: "Atendé sin estar",
+    desc: "Desde tu panel ves todo en tiempo real: pedidos, turnos y consultas. Tu negocio trabaja solo.",
   },
 ];
 
@@ -44,65 +38,48 @@ export default function HowItWorks() {
   }, []);
 
   return (
-    <section id="how" ref={ref} className="relative py-28 px-6 overflow-hidden">
-      <div className="absolute inset-0 bg-[#0c0f1a] pointer-events-none" />
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/20 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/20 to-transparent" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
-                        w-[500px] h-[300px] rounded-full bg-blue-500/5 blur-[100px]" />
-      </div>
+    <section id="how" ref={ref} className="bg-[#F3EEE5] py-32 px-6">
+      <div className="max-w-7xl mx-auto">
 
-      <div className="relative z-10 max-w-6xl mx-auto">
-        <div className="reveal text-center mb-20 space-y-4">
-          <span className="inline-block text-xs font-semibold tracking-widest uppercase
-                           text-blue-400 bg-blue-500/10 border border-blue-500/20
-                           px-4 py-1.5 rounded-full">
-            Cómo funciona
-          </span>
-          <h2 className="font-display text-4xl sm:text-5xl text-white leading-tight">
-            De cero a activo<br />
-            <span className="gradient-text italic">en el mismo día</span>
+        <div className="reveal text-center mb-24">
+          <h2 className="font-black text-[clamp(48px,6vw,72px)] uppercase tracking-tighter text-[#111111]">
+            3 PASOS SIMPLES
           </h2>
+          <p className="text-xl text-[#666666] font-medium mt-6">
+            Tu negocio automatizado en minutos, sin saber nada técnico.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
-          <div className="hidden lg:block absolute top-8 left-[12.5%] right-[12.5%] h-px
-                          bg-gradient-to-r from-transparent via-blue-500/30 to-transparent
-                          pointer-events-none" />
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mt-8">
           {STEPS.map((step, i) => {
-            const Icon = step.icon;
-            const delays = ["delay-100", "delay-200", "delay-300", "delay-400"];
+            const delays = ["delay-100", "delay-200", "delay-300"];
             return (
               <div key={i}
-                className={`reveal ${delays[i]} relative flex flex-col items-center text-center`}>
-                <div className="relative mb-6">
-                  <div className="w-16 h-16 rounded-2xl bg-[#111827] border border-blue-500/20
-                                  flex items-center justify-center relative z-10
-                                  shadow-lg shadow-blue-500/10">
-                    <Icon className="w-7 h-7 text-blue-400" />
-                  </div>
-                  <span className="absolute -top-2 -right-2 w-6 h-6 rounded-full
-                                   bg-blue-500 text-white text-[10px] font-bold
-                                   flex items-center justify-center z-20">
-                    {i + 1}
-                  </span>
+                className={`reveal ${delays[i]} relative border-4 border-[#111111] bg-white p-8 pt-16
+                            group hover:bg-[#111111] hover:text-[#F3EEE5] transition-colors cursor-default`}
+              >
+                <div className="absolute -top-10 -left-4 text-8xl font-black text-[#ECE4D7] pointer-events-none z-0 group-hover:text-[#333333] transition-colors select-none">
+                  {step.num}
                 </div>
-                <h3 className="text-white font-semibold text-lg mb-3 leading-snug">{step.title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed font-light">{step.desc}</p>
+                <div className="relative z-10">
+                  <h3 className="font-black text-2xl uppercase tracking-tight mb-4 text-[#111111] group-hover:text-[#F3EEE5] transition-colors">
+                    {step.title}
+                  </h3>
+                  <p className="text-[#666666] group-hover:text-[#999999] font-medium leading-relaxed transition-colors">
+                    {step.desc}
+                  </p>
+                </div>
               </div>
             );
           })}
         </div>
 
-        <div className="reveal text-center mt-16">
+        <div className="reveal text-center mt-20">
           <button
             onClick={() => document.querySelector("#pricing")?.scrollIntoView({ behavior: "smooth" })}
-            className="inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-400
-                       text-white font-semibold px-8 py-4 rounded-2xl
-                       shadow-xl shadow-blue-500/30 hover:shadow-blue-500/50
-                       transition-all duration-300 hover:-translate-y-0.5">
-            Quiero empezar
+            className="inline-flex items-center gap-2 bg-[#111111] text-[#F3EEE5] border-2 border-[#111111] px-8 py-4 font-black uppercase tracking-tight hover:bg-transparent hover:text-[#111111] transition-colors"
+          >
+            QUIERO EMPEZAR
           </button>
         </div>
       </div>
