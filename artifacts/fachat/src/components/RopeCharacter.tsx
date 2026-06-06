@@ -1,5 +1,15 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 
+function useIsMobile() {
+  const [mobile, setMobile] = useState(() => window.innerWidth < 768);
+  useEffect(() => {
+    const fn = () => setMobile(window.innerWidth < 768);
+    window.addEventListener("resize", fn);
+    return () => window.removeEventListener("resize", fn);
+  }, []);
+  return mobile;
+}
+
 const SECTION_IDS  = ["hero", "features", "how", "pricing", "faq"];
 const SECTION_MSGS: Record<string, string> = {
   features: "¡Todo esto incluído! 👀",
@@ -9,6 +19,8 @@ const SECTION_MSGS: Record<string, string> = {
 };
 
 export default function RopeCharacter() {
+  const isMobile = useIsMobile();
+
   // ── physics refs (mutated in rAF, no re-render) ───────────────────
   const scrollProg  = useRef(0);
   const charY       = useRef(8);
@@ -170,6 +182,9 @@ export default function RopeCharacter() {
       clearTimeout(bubbleHideTimer.current);
     };
   }, [checkSection, muted]);
+
+  // ── bail out on mobile (after all hooks) ─────────────────────────
+  if (isMobile) return null;
 
   // ── derived SVG values ────────────────────────────────────────────
   const { y, tilt, swing, moving, phase } = disp;

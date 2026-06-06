@@ -16,12 +16,7 @@ export default function Footer() {
         </div>
 
         {/* Grid de info + links */}
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "2fr 1fr 1fr",
-          gap: "3rem",
-          marginBottom: "3rem",
-        }}>
+        <div className="footer-grid">
           {/* Descripción + contacto */}
           <div>
             <p className="text-[#999999] font-medium leading-relaxed"

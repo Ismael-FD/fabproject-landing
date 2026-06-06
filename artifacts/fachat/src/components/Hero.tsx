@@ -91,7 +91,7 @@ export default function Hero() {
           <div
             data-reveal
             style={{ opacity: 0, transform: "translateY(20px)", transition: "all 0.6s ease" }}
-            className="relative hidden lg:block pr-4 pb-4"
+            className="relative pr-4 pb-4"
           >
             {/* Outer frame — offset shadow contained within column */}
             <div
