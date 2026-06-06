@@ -39,7 +39,7 @@ export default function HowItWorks() {
 
   return (
     <section id="how" ref={ref} className="bg-[#F3EEE5] border-t-4 border-[#111111]">
-      <div className="section-inner px-8 py-20">
+      <div className="section-inner py-20">
 
         <div className="reveal mb-12">
           <h2 className="font-black text-[clamp(40px,4vw,64px)] uppercase tracking-tighter text-[#111111]">
@@ -55,9 +55,9 @@ export default function HowItWorks() {
             const delays = ["delay-100", "delay-200", "delay-300"];
             return (
               <div key={i}
-                className={`reveal ${delays[i]} relative border-4 border-[#111111] bg-white p-8 pt-14 group hover:bg-[#111111] transition-colors duration-200 cursor-default`}
+                className={`reveal ${delays[i]} relative border-4 border-[#111111] bg-white p-8 pt-16 group hover:bg-[#111111] transition-colors duration-200 cursor-default overflow-hidden`}
               >
-                <div className="absolute -top-8 left-4 text-7xl font-black text-[#ECE4D7] pointer-events-none select-none group-hover:text-[#2a2a2a] transition-colors">
+                <div className="absolute top-0 left-2 text-8xl font-black text-[#ECE4D7] pointer-events-none select-none group-hover:text-[#2a2a2a] transition-colors leading-none">
                   {step.num}
                 </div>
                 <div className="relative z-10">

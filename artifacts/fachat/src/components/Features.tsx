@@ -69,10 +69,10 @@ export default function Features() {
   return (
     <section id="features" ref={ref}
       className="bg-[#ECE4D7] border-t-4 border-[#111111]">
-      <div className="section-inner px-8 py-20">
+      <div className="section-inner py-20">
 
         <div className="reveal mb-12">
-          <h2 className="text-[clamp(40px,4vw,64px)] font-black uppercase tracking-tighter text-[#111111] leading-tight pl-5 border-l-8 border-[#111111]">
+          <h2 className="text-[clamp(40px,4vw,64px)] font-black uppercase tracking-tighter text-[#111111] leading-tight">
             TODO LO QUE<br />NECESITÁS
           </h2>
         </div>

@@ -19,7 +19,7 @@ export default function Hero() {
 
   return (
     <section id="hero" ref={ref} className="bg-[#F3EEE5] overflow-hidden">
-      <div className="section-inner px-8 pt-20 pb-24">
+      <div className="section-inner pt-20 pb-24">
         <div className="grid lg:grid-cols-2 gap-12 xl:gap-20 items-center">
 
           {/* LEFT — copy */}
@@ -89,12 +89,12 @@ export default function Hero() {
           <div
             data-reveal
             style={{ opacity: 0, transform: "translateY(20px)", transition: "all 0.6s ease" }}
-            className="relative hidden lg:block"
+            className="relative hidden lg:block pr-4 pb-4"
           >
             {/* Outer frame — offset shadow contained within column */}
             <div
               className="border-4 border-[#111111] bg-white relative"
-              style={{ boxShadow: "12px 12px 0px 0px #111111" }}
+              style={{ boxShadow: "8px 8px 0px 0px #111111" }}
             >
               {/* Window chrome bar */}
               <div className="h-10 bg-[#ECE4D7] border-b-4 border-[#111111] flex items-center px-4 gap-2">
@@ -106,17 +106,17 @@ export default function Hero() {
                 </span>
               </div>
 
-              <div className="p-6 flex flex-col gap-4">
-                <div className="self-end max-w-[75%] bg-[#F3EEE5] border-2 border-[#111111] p-3 text-sm text-[#111111]">
+              <div className="p-5 flex flex-col gap-3">
+                <div className="self-end max-w-[70%] bg-[#F3EEE5] border-2 border-[#111111] p-3 text-sm text-[#111111] break-words">
                   Hola! Quiero sacar turno para mañana ✂️
                 </div>
-                <div className="self-start max-w-[75%] bg-white border-2 border-[#111111] p-3 text-sm text-[#111111]">
+                <div className="self-start max-w-[70%] bg-white border-2 border-[#111111] p-3 text-sm text-[#111111] break-words">
                   ¡Hola! Tenemos turnos a las 10:00, 12:30 y 16:00. ¿Cuál preferís?
                 </div>
-                <div className="self-end max-w-[75%] bg-[#F3EEE5] border-2 border-[#111111] p-3 text-sm text-[#111111]">
+                <div className="self-end max-w-[70%] bg-[#F3EEE5] border-2 border-[#111111] p-3 text-sm text-[#111111] break-words">
                   A las 10, para corte y barba
                 </div>
-                <div className="self-start max-w-[80%] border-2 border-[#111111] bg-[#ECE4D7] p-3 text-[#111111]">
+                <div className="self-start max-w-[75%] border-2 border-[#111111] bg-[#ECE4D7] p-3 text-[#111111]">
                   <div className="font-black text-xs uppercase border-b-2 border-[#111111] pb-1.5 mb-2">
                     TURNO CONFIRMADO ✓
                   </div>
@@ -128,7 +128,7 @@ export default function Hero() {
 
             {/* Decorative badge */}
             <div
-              className="absolute -top-5 -right-4 border-4 border-[#111111] bg-[#F3EEE5] w-12 h-12 flex items-center justify-center z-10"
+              className="absolute -top-5 right-6 border-4 border-[#111111] bg-[#F3EEE5] w-12 h-12 flex items-center justify-center z-10"
               style={{ transform: "rotate(12deg)" }}
             >
               <span className="font-black text-2xl leading-none">!</span>
