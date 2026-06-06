@@ -1,0 +1,1 @@
+- [Tailwind v4 class generation](tailwind-v4-class-generation.md) — new Tailwind classes added after initial build are silently ignored; use inline style={{}} for all spacing changes
