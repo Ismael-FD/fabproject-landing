@@ -70,15 +70,16 @@ export default function Hero() {
 
             <div
               data-reveal
-              style={{ opacity: 0, transform: "translateY(20px)", transition: "all 0.5s ease" }}
+              style={{ opacity: 0, transform: "translateY(20px)", transition: "all 0.5s ease", marginTop: "0.75rem" }}
               className="flex items-center gap-6 flex-wrap"
             >
               <button
                 onClick={() => scrollTo("#pricing")}
-                className="group flex items-center gap-2 bg-[#111111] text-[#F3EEE5] border-2 border-[#111111] px-8 py-4 font-black uppercase tracking-tight text-sm hover:bg-transparent hover:text-[#111111] transition-colors"
+                style={{ padding: "1rem 2.5rem", fontSize: "1rem" }}
+                className="group flex items-center gap-3 bg-[#111111] text-[#F3EEE5] border-2 border-[#111111] font-black uppercase tracking-tight hover:bg-transparent hover:text-[#111111] transition-colors"
               >
                 EMPEZAR GRATIS
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
               <span className="text-xs font-semibold text-[#666666] uppercase tracking-wide">
                 Sin tarjeta de crédito
