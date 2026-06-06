@@ -60,7 +60,8 @@ export default function Hero() {
                 { icon: Car, label: "Lavaderos" },
               ].map(({ icon: Icon, label }) => (
                 <div key={label}
-                  className="border-2 border-[#111111] bg-white px-4 py-2 text-xs font-black flex items-center gap-2 text-[#111111]">
+                  className="border-2 border-[#111111] bg-white text-xs font-black flex items-center gap-2 text-[#111111]"
+                  style={{ padding: "0.5rem 1rem" }}>
                   <Icon className="w-3.5 h-3.5" />
                   {label}
                 </div>
@@ -106,21 +107,26 @@ export default function Hero() {
                 </span>
               </div>
 
-              <div className="p-6 flex flex-col gap-3">
-                <div className="self-end max-w-[70%] bg-[#F3EEE5] border-2 border-[#111111] px-4 py-3 text-sm text-[#111111] break-words">
+              <div style={{ padding: "1.5rem", display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+                <div className="self-end max-w-[70%] bg-[#F3EEE5] border-2 border-[#111111] text-sm text-[#111111] break-words"
+                  style={{ padding: "0.75rem 1.25rem" }}>
                   Hola! Quiero sacar turno para mañana ✂️
                 </div>
-                <div className="self-start max-w-[70%] bg-white border-2 border-[#111111] px-4 py-3 text-sm text-[#111111] break-words">
+                <div className="self-start max-w-[70%] bg-white border-2 border-[#111111] text-sm text-[#111111] break-words"
+                  style={{ padding: "0.75rem 1.25rem" }}>
                   ¡Hola! Tenemos turnos a las 10:00, 12:30 y 16:00. ¿Cuál preferís?
                 </div>
-                <div className="self-end max-w-[70%] bg-[#F3EEE5] border-2 border-[#111111] px-4 py-3 text-sm text-[#111111] break-words">
+                <div className="self-end max-w-[70%] bg-[#F3EEE5] border-2 border-[#111111] text-sm text-[#111111] break-words"
+                  style={{ padding: "0.75rem 1.25rem" }}>
                   A las 10, para corte y barba
                 </div>
-                <div className="self-start max-w-[75%] border-2 border-[#111111] bg-[#ECE4D7] px-4 py-3 text-[#111111]">
-                  <div className="font-black text-xs uppercase border-b-2 border-[#111111] pb-2 mb-2.5">
+                <div className="self-start max-w-[75%] border-2 border-[#111111] bg-[#ECE4D7] text-[#111111]"
+                  style={{ padding: "0.75rem 1.25rem" }}>
+                  <div className="font-black text-xs uppercase border-b-2 border-[#111111]"
+                    style={{ paddingBottom: "0.5rem", marginBottom: "0.625rem" }}>
                     TURNO CONFIRMADO ✓
                   </div>
-                  <div className="text-xs mb-1.5">📅 Mañana · 10:00 hs · Corte + Barba</div>
+                  <div className="text-xs" style={{ marginBottom: "0.375rem" }}>📅 Mañana · 10:00 hs · Corte + Barba</div>
                   <div className="font-black text-xs">¡TE ESPERAMOS!</div>
                 </div>
               </div>

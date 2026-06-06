@@ -119,12 +119,12 @@ export default function Pricing() {
 
             return (
               <div key={plan.key}
-                className={`reveal ${delays[i]} relative flex flex-col border-4 border-[#111111] p-8 ${
+                className={`reveal ${delays[i]} relative flex flex-col border-4 border-[#111111] ${
                   isHighlight ? "bg-[#111111] text-[#F3EEE5]" : "bg-white text-[#111111]"
                 }`}
                 style={isHighlight
-                  ? { boxShadow: "12px 12px 0px 0px #F3EEE5, 12px 12px 0px 3px #111111" }
-                  : { boxShadow: "6px 6px 0px 0px #111111" }
+                  ? { boxShadow: "12px 12px 0px 0px #F3EEE5, 12px 12px 0px 3px #111111", padding: "2rem" }
+                  : { boxShadow: "6px 6px 0px 0px #111111", padding: "2rem" }
                 }
               >
                 {meta.badge && (
@@ -166,7 +166,8 @@ export default function Pricing() {
 
                 <button
                   onClick={() => handleCTA(meta.name)}
-                  className={`w-full py-4 font-black uppercase tracking-tight text-sm border-2 transition-colors ${
+                  style={{ padding: "1rem" }}
+                  className={`w-full font-black uppercase tracking-tight text-sm border-2 transition-colors ${
                     isHighlight
                       ? "bg-[#F3EEE5] text-[#111111] border-[#F3EEE5] hover:bg-transparent hover:text-[#F3EEE5]"
                       : "bg-white text-[#111111] border-[#111111] hover:bg-[#111111] hover:text-[#F3EEE5]"
